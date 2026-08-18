@@ -47,10 +47,11 @@ jobs:
         # Иначе GitHub Pages проигнорирует каталог _next
         run: touch out/.nojekyll
 
+      # Pages включается один раз в настройках репозитория:
+      # Settings → Pages → Source: GitHub Actions.
+      # Автоматическое включение (enablement) недоступно стандартному
+      # токену workflow, поэтому на него не рассчитываем.
       - uses: actions/configure-pages@v5
-        with:
-          # Включает Pages при первом запуске, чтобы не настраивать вручную
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
