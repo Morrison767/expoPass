@@ -48,6 +48,9 @@ jobs:
         run: touch out/.nojekyll
 
       - uses: actions/configure-pages@v5
+        with:
+          # Включает Pages при первом запуске, чтобы не настраивать вручную
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
