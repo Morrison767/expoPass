@@ -98,15 +98,15 @@ export function StepData({ user, objects }: { user: User; objects: SiteObject[] 
                       className={cn(
                         'focus-ring group relative overflow-hidden rounded-md border p-4 text-left transition-all duration-base ease-decelerate',
                         active
-                          ? 'border-accent bg-accent-soft shadow-beam'
-                          : 'border-hairline-strong bg-surface-raised hover:-translate-y-px hover:border-content-faint hover:shadow-card-hover',
+                          ? 'border-accent bg-accent-soft ring-2 ring-accent/20'
+                          : 'border-hairline-strong bg-surface hover:border-content-faint hover:bg-surface-muted',
                       )}
                     >
                       {active ? (
                         <motion.span
                           layoutId="operation-rail"
                           aria-hidden="true"
-                          className="absolute inset-y-0 left-0 w-rail bg-accent shadow-beam-sm"
+                          className="absolute inset-y-0 left-0 w-rail bg-accent"
                         />
                       ) : null}
 

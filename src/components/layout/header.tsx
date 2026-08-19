@@ -32,7 +32,7 @@ export function Header() {
   }
 
   return (
-    <header className="on-nav relative z-dropdown flex h-topbar shrink-0 items-center gap-3 border-b border-nav-line bg-surface-nav px-3">
+    <header className="on-nav relative z-dropdown flex h-topbar shrink-0 items-center gap-3 border-b border-nav-line bg-nav px-3">
       <span aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="relative flex min-w-0 flex-1 items-center gap-3">
@@ -199,7 +199,7 @@ function NotificationsBell({ userId }: { userId: string }) {
                     {!item.read ? (
                       <span
                         aria-hidden="true"
-                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-beam-sm"
+                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       />
                     ) : null}
                   </button>

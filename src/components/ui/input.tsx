@@ -11,15 +11,15 @@ import { Icon } from './icon'
 const CONTROL_BASE = cn(
   'w-full appearance-none border bg-surface text-content transition-all duration-fast',
   'placeholder:text-content-faint',
-  'hover:border-content-faint focus:border-accent focus:outline-none focus:shadow-beam-sm',
+  'hover:border-content-faint focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20',
   'disabled:cursor-not-allowed disabled:border-hairline disabled:bg-surface-muted disabled:text-content-faint disabled:shadow-none',
   'read-only:bg-surface-sunken read-only:text-content-muted',
 )
 
 const CONTROL_SIZES = {
-  sm: 'h-control-sm rounded-sm px-2 text-xs',
-  md: 'h-control rounded px-2.5 text-base',
-  lg: 'h-control-lg rounded-md px-3 text-md',
+  sm: 'h-control-sm rounded-sm px-2.5 text-xs',
+  md: 'h-control rounded px-3 text-base',
+  lg: 'h-control-lg rounded-md px-3.5 text-md',
 }
 
 const TEXTAREA_SIZES = {

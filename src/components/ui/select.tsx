@@ -29,7 +29,7 @@ const SelectTrigger = React.forwardRef<
       aria-invalid={invalid || undefined}
       className={cn(
         'focus-ring flex w-full items-center justify-between gap-2 border bg-surface text-content transition-all duration-fast',
-        'hover:border-content-faint focus:border-accent focus:shadow-beam-sm focus:outline-none',
+        'hover:border-content-faint focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none',
         'disabled:cursor-not-allowed disabled:border-hairline disabled:bg-surface-muted disabled:text-content-faint',
         'data-[placeholder]:text-content-faint',
         TRIGGER_SIZES[size],

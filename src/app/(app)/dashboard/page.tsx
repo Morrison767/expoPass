@@ -201,7 +201,7 @@ export default function DashboardPage() {
               <Card className="lg:w-72">
                 <div className="flex h-full flex-col justify-between px-4 py-4">
                   <div>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-accent-line bg-accent-soft text-accent-fg shadow-beam-sm">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-accent-line bg-accent-soft text-accent-fg">
                       <Icon name="package" size={19} />
                     </span>
                     <h2 className="mt-3 text-lg font-semibold leading-snug text-content">
@@ -246,7 +246,7 @@ export default function DashboardPage() {
                         icon={counter.icon}
                         chip={counter.chip}
                         hint={counter.hint}
-                        className="h-full transition-all duration-base ease-decelerate hover:-translate-y-px hover:border-hairline-strong hover:shadow-card-hover"
+                        className="h-full transition-all duration-base ease-decelerate hover:border-hairline-strong"
                       />
                     </Link>
                   )

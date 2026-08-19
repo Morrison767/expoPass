@@ -184,7 +184,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 /* ─────────────── Лёгкое конфетти ─────────────── */
 
-const CONFETTI_COLORS = ['#0B7C93', '#1B3A6B', '#0D9488', '#F5A524', '#35D6F0']
+const CONFETTI_COLORS = ['#2474F5', '#16A34A', '#F59E0B', '#7C3AED', '#93C5FD']
 
 /**
  * Короткий однократный салют: двенадцать частиц разлетаются и гаснут.

@@ -26,12 +26,12 @@ export function QrCode({
         display: 'inline-block',
         padding: 6,
         background: '#FFFFFF',
-        border: '1px solid #DFE3EA',
+        border: '1px solid #E1E5EB',
         borderRadius: 4,
         lineHeight: 0,
       }}
     >
-      <QRCodeSVG value={value} size={size} level="M" bgColor="#FFFFFF" fgColor="#101B2D" />
+      <QRCodeSVG value={value} size={size} level="M" bgColor="#FFFFFF" fgColor="#0F1729" />
     </span>
   )
 }

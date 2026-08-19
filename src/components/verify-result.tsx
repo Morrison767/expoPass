@@ -28,7 +28,7 @@ export function VerifyShell({
 }) {
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
-      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-surface-nav px-4 sm:px-6">
+      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-nav px-4 sm:px-6">
         <span aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
         <Link href="/" className="focus-ring-nav relative rounded">
           <BrandLock size={30} onDark subtitle={subtitle} />

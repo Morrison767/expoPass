@@ -59,9 +59,9 @@ export function MultiSelect({
         aria-label={label}
         className={cn(
           'focus-ring flex w-full items-center justify-between gap-2 border bg-surface text-content transition-all duration-fast',
-          'hover:border-content-faint focus:border-accent focus:shadow-beam-sm',
+          'hover:border-content-faint focus:border-accent focus:ring-2 focus:ring-accent/20',
           size === 'sm' ? 'h-control-sm rounded-sm px-2 text-xs' : 'h-control rounded px-2.5 text-base',
-          open ? 'border-accent shadow-beam-sm' : 'border-hairline-strong',
+          open ? 'border-accent ring-2 ring-accent/20' : 'border-hairline-strong',
         )}
       >
         <span className={cn('min-w-0 truncate text-left', !value.length && 'text-content-faint')}>

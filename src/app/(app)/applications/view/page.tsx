@@ -817,7 +817,7 @@ function TimelineRow({
         className={cn(
           'relative z-base flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border',
           current
-            ? 'border-accent bg-accent text-content-inverse shadow-beam-sm'
+            ? 'border-accent bg-accent text-content-inverse'
             : 'border-hairline bg-surface text-content-faint',
         )}
       >
@@ -962,7 +962,7 @@ function RouteStep({
           done
             ? 'border-status-confirmed-border bg-status-confirmed-soft text-status-confirmed-text'
             : active
-              ? 'border-accent bg-accent text-content-inverse shadow-beam-sm'
+              ? 'border-accent bg-accent text-content-inverse'
               : 'border-hairline bg-surface text-content-faint',
         )}
       >

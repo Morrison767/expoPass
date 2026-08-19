@@ -200,7 +200,7 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
-      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-surface-nav px-4 sm:px-6">
+      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-nav px-4 sm:px-6">
         <span aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
         <Link href="/" className="focus-ring-nav relative rounded">
           <BrandLock size={30} onDark subtitle="Регистрация" />
@@ -233,7 +233,7 @@ export default function RegisterPage() {
                   className={cn(
                     'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-2xs font-semibold tabular-nums',
                     active
-                      ? 'border-accent bg-accent text-content-inverse shadow-beam-sm'
+                      ? 'border-accent bg-accent text-content-inverse'
                       : done
                         ? 'border-status-confirmed-border bg-status-confirmed-soft text-status-confirmed-text'
                         : 'border-hairline-strong bg-surface text-content-faint',
@@ -621,7 +621,7 @@ export default function RegisterPage() {
         {step === 'code' ? (
           <div className="mx-auto max-w-md">
             <div className="flex flex-col items-center text-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-accent-line bg-accent-soft text-accent-fg shadow-beam-sm">
+              <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-accent-line bg-accent-soft text-accent-fg">
                 <Icon name="mail" size={22} />
               </span>
               <h1 className="mt-3 text-2xl font-semibold text-content">

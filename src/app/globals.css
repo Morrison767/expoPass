@@ -4,18 +4,22 @@
 
 /*
  * ═══════════════════════════════════════════════════════════════
- *  СЕМАНТИЧЕСКИЕ ТОКЕНЫ ТЕМ — перенесены из ИС учёта мероприятий
+ *  СЕМАНТИЧЕСКИЕ ТОКЕНЫ ТЕМ
  * ═══════════════════════════════════════════════════════════════
+ *
+ * Палитра снята со скриншотов ADATA: белые поверхности, прохладный
+ * светлый фон, один насыщенный синий на действиях, тонкие границы
+ * вместо теней.
  *
  * Компоненты не знают про светлое и тёмное. Они используют
  * семантические классы — bg-surface, text-content, border-hairline,
- * bg-nav-raised — а значения подставляет активная тема.
+ * bg-nav — а значения подставляет активная тема.
  *
  * Слои:
  *   canvas   — фон приложения
  *   surface  — карточки, таблицы, панели (рабочая поверхность)
- *   nav      — каркас: сайдбар, топбар, шапка слайд-панели
- *   accent   — свет: активное состояние, фокус, индикаторы
+ *   nav      — каркас: шапка, боковое меню
+ *   accent   — синий: активное состояние, фокус, ссылки
  *
  * Тема переключается атрибутом data-theme на <html>.
  */
@@ -26,293 +30,272 @@
     color-scheme: light;
 
     /* ── Поверхности ── */
-    --canvas: #f1f3f6;
+    --canvas: #ffffff;
     --surface: #ffffff;
-    --surface-sunken: #f5f6f8;
-    --surface-muted: #edeff3;
-    --surface-inverse: #101b2d;
+    --surface-sunken: #f8fafc;
+    --surface-muted: #ecf0f3;
+    --surface-inverse: #0f1729;
 
-    /* ── Каркас (сайдбар, топбар, шапки панелей) ── */
+    /* ── Каркас: шапка и боковое меню — белые, как у ADATA ── */
     --nav: #ffffff;
     --nav-raised: #ffffff;
-    --nav-sunken: #f5f6f8;
-    --nav-hover: #eef0f4;
-    --nav-active: #e8fbff;
-    --nav-fg: #101b2d;
-    --nav-muted: #4e5868;
-    --nav-subtle: #5a6474;
-    --nav-faint: #657082;
-    --nav-line: #e3e7ed;
+    --nav-sunken: #f8fafc;
+    --nav-hover: #ecf0f3;
+    --nav-active: #dcebfe;
+    --nav-fg: #0f1729;
+    --nav-muted: #293548;
+    --nav-subtle: #475569;
+    --nav-faint: #64758b;
+    --nav-line: #e1e5eb;
 
     /* ── Границы ── */
-    --hairline: #dfe3ea;
-    --hairline-soft: #edeff3;
-    --hairline-strong: #c7cdd8;
+    --hairline: #e1e5eb;
+    --hairline-soft: #f3f5f7;
+    --hairline-strong: #cbd3dd;
 
     /* ── Текст ──
-       Все текстовые уровни проходят AA и на белом, и на canvas:
-       10px CAPS-метки несут смысл, поэтому «декоративно-серых»
-       значений ниже 4.5:1 в шкале текста нет. */
-    --content: #101b2d; /*        17.3:1 */
-    --content-muted: #4e5868; /*   7.1:1 */
-    --content-subtle: #5a6474; /*  5.98:1 */
-    --content-faint: #657082; /*   5.01:1 */
+       Все уровни проходят AA и на белом, и на canvas: 11px CAPS-метки
+       несут смысл, поэтому «декоративно-серых» значений в шкале нет. */
+    --content: #0f1729; /*        16.1:1 */
+    --content-muted: #293548; /*   9.4:1 */
+    --content-subtle: #475569; /*  5.7:1 */
+    --content-faint: #64758b; /*   4.8:1 */
     --content-inverse: #ffffff;
 
-    /* ── Акцент-свет ── */
-    --accent: #0b7c93;
-    --accent-fg: #0b7c93;
-    --accent-strong: #0d6375;
-    --accent-soft: #e8fbff;
-    --accent-line: #a8edfa;
-    --accent-glow: rgba(23, 188, 216, 0.35);
-    --accent-glow-soft: rgba(23, 188, 216, 0.2);
+    /* ── Акцент: фирменный синий ── */
+    --accent: #2474f5;
+    --accent-fg: #0a5adb;
+    --accent-strong: #1d4ed8;
+    --accent-soft: #dcebfe;
+    --accent-line: #bfdbfe;
+    --accent-glow: rgba(36, 116, 245, 0.24);
+    --accent-glow-soft: rgba(36, 116, 245, 0.12);
 
-    /* ── Primary (структура) ── */
-    --primary: #1b3a6b;
-    --primary-hover: #2f5490;
-    --primary-active: #17325c;
-    --primary-line: #12274a;
+    /* ── Primary: тот же синий — у ADATA одна акцентная краска ── */
+    --primary: #2474f5;
+    --primary-hover: #3b82f6;
+    --primary-active: #0a5adb;
+    --primary-line: #2474f5;
     --primary-fg: #ffffff;
 
     /* ── Оверлей ── */
-    --overlay: rgba(8, 13, 20, 0.42);
+    --overlay: rgba(15, 23, 41, 0.5);
 
-    /* ── Градиенты поверхностей ── */
-    --grad-surface: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
-    --grad-nav: linear-gradient(180deg, #ffffff 0%, #f9fafc 100%);
-    --grad-hero: linear-gradient(135deg, #ecf9fd 0%, #ffffff 46%, #f4f8fb 100%);
+    /* ── Поверхности без градиентов: у ADATA заливка плоская ── */
+    --grad-surface: none;
+    --grad-nav: none;
+    --grad-hero: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
     --grad-beam-line: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(11, 124, 147, 0.3) 22%,
-      rgba(11, 124, 147, 0.6) 50%,
-      rgba(11, 124, 147, 0.3) 78%,
+      rgba(26, 115, 232, 0.18) 30%,
+      rgba(26, 115, 232, 0.32) 50%,
+      rgba(26, 115, 232, 0.18) 70%,
       transparent 100%
     );
     --grad-beam-line-soft: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(11, 124, 147, 0.14) 30%,
-      rgba(11, 124, 147, 0.3) 50%,
-      rgba(11, 124, 147, 0.14) 70%,
+      rgba(26, 115, 232, 0.1) 30%,
+      rgba(26, 115, 232, 0.18) 50%,
+      rgba(26, 115, 232, 0.1) 70%,
       transparent 100%
     );
 
-    /* ── Тени ── */
-    --shadow-xs: 0 1px 1px 0 rgba(8, 13, 20, 0.04);
-    --shadow-sm: 0 1px 2px 0 rgba(8, 13, 20, 0.06), 0 1px 3px 0 rgba(8, 13, 20, 0.04);
-    --shadow-base: 0 1px 2px 0 rgba(8, 13, 20, 0.06), 0 2px 6px -1px rgba(8, 13, 20, 0.06);
-    --shadow-md: 0 2px 4px -1px rgba(8, 13, 20, 0.07), 0 6px 16px -4px rgba(8, 13, 20, 0.09);
-    --shadow-lg: 0 4px 8px -2px rgba(8, 13, 20, 0.08), 0 12px 28px -6px rgba(8, 13, 20, 0.14);
-    --shadow-xl: 0 8px 16px -4px rgba(8, 13, 20, 0.1), 0 24px 48px -12px rgba(8, 13, 20, 0.18);
-    --shadow-panel: -12px 0 40px -12px rgba(8, 13, 20, 0.22);
-    --shadow-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
-    --shadow-card: 0 1px 1px 0 rgba(8, 13, 20, 0.04), 0 4px 12px -6px rgba(8, 13, 20, 0.1),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
-    --shadow-card-hover: 0 2px 4px -1px rgba(8, 13, 20, 0.07),
-      0 12px 24px -8px rgba(8, 13, 20, 0.16), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-    --shadow-button: 0 1px 2px 0 rgba(8, 13, 20, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
-    --shadow-button-quiet: 0 1px 1px 0 rgba(8, 13, 20, 0.05),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-    --shadow-plate: inset 0 -1px 0 0 rgba(5, 9, 16, 0.3);
+    /* ── Тени: мягкие и редкие, глубина держится на границах ── */
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-base: none;
+    --shadow-md: 0 4px 12px -4px rgba(15, 23, 41, 0.08);
+    --shadow-lg: 0 12px 32px -8px rgba(15, 23, 41, 0.12);
+    --shadow-xl: 0 24px 56px -16px rgba(15, 23, 41, 0.18);
+    --shadow-panel: -12px 0 40px -16px rgba(15, 23, 41, 0.16);
+    --shadow-bevel: none;
+    --shadow-card: none;
+    --shadow-card-hover: none;
+    --shadow-button: none;
+    --shadow-button-quiet: none;
+    --shadow-plate: none;
 
-    /* ── Фактура ── */
-    --dot-color: rgba(27, 58, 107, 0.1);
-    --grid-color: rgba(27, 58, 107, 0.055);
-    --bloom: radial-gradient(
-      120% 90% at 12% -20%,
-      rgba(23, 188, 216, 0.16) 0%,
-      rgba(23, 188, 216, 0.06) 34%,
-      transparent 68%
-    );
-    --scrollbar: #c7cdd8;
-    --scrollbar-hover: #98a1b2;
-    --nav-scrollbar: #c7cdd8;
+    /* ── Фактура: у ADATA её нет, точки и сетку гасим ── */
+    --dot-color: transparent;
+    --grid-color: rgba(36, 116, 245, 0.05);
+    --bloom: none;
+    --scrollbar: #cbd3dd;
+    --scrollbar-hover: #94a3b8;
+    --nav-scrollbar: #cbd3dd;
   }
 
+  /*
+   * Тёмная тема. На скриншотах ADATA её нет — интерфейс только светлый.
+   * Режим сохранён, потому что переключатель в прототипе уже работает;
+   * оттенки пересчитаны под фирменный синий, чтобы тёмный вариант
+   * не выглядел чужим.
+   */
   [data-theme='dark'] {
     color-scheme: dark;
 
-    /* ── Поверхности ── */
-    --canvas: #060b12;
-    --surface: #0e1620;
-    --surface-sunken: #131d29;
-    --surface-muted: #1b2634;
-    --surface-inverse: #e8eef4;
+    --canvas: #080c14;
+    --surface: #0d131d;
+    --surface-sunken: #111826;
+    --surface-muted: #1d2738;
+    --surface-inverse: #e8edf5;
 
-    /* ── Каркас ── */
-    --nav: #080d14;
-    --nav-raised: #080d14;
-    --nav-sunken: #0b1219;
-    --nav-hover: #16202c;
-    --nav-active: #10242e;
-    --nav-fg: #e8eef4;
-    --nav-muted: #c7d5e0;
-    --nav-subtle: #94a7b8;
-    --nav-faint: #6d8296;
-    --nav-line: #1c2734;
+    --nav: #0d131d;
+    --nav-raised: #0d131d;
+    --nav-sunken: #111826;
+    --nav-hover: #1d2738;
+    --nav-active: #14243d;
+    --nav-fg: #e8edf5;
+    --nav-muted: #c9d2e0;
+    --nav-subtle: #a3afc2;
+    --nav-faint: #8290a6;
+    --nav-line: #1d2738;
 
-    /* ── Границы ── */
-    --hairline: #223041;
-    --hairline-soft: #17212d;
-    --hairline-strong: #33455a;
+    --hairline: #1f2a3b;
+    --hairline-soft: #172131;
+    --hairline-strong: #2f3d52;
 
-    /* ── Текст ── */
-    --content: #e8eef4;
-    --content-muted: #c7d5e0;
-    --content-subtle: #94a7b8;
-    --content-faint: #6d8296;
-    --content-inverse: #060b12;
+    --content: #e8edf5;
+    --content-muted: #c9d2e0;
+    --content-subtle: #a3afc2;
+    --content-faint: #8290a6;
+    --content-inverse: #080c14;
 
-    /* ── Акцент-свет ── */
-    --accent: #35d6f0;
-    --accent-fg: #6fe1f5;
-    --accent-strong: #a8edfa;
-    --accent-soft: #0d2a33;
-    --accent-line: #16606f;
-    --accent-glow: rgba(53, 214, 240, 0.5);
-    --accent-glow-soft: rgba(53, 214, 240, 0.28);
+    --accent: #5a9df5;
+    --accent-fg: #93c0fb;
+    --accent-strong: #c2dbfd;
+    --accent-soft: #14243d;
+    --accent-line: #1f4d85;
+    --accent-glow: rgba(90, 157, 245, 0.35);
+    --accent-glow-soft: rgba(90, 157, 245, 0.18);
 
-    /* ── Primary ── */
-    --primary: #2f5490;
-    --primary-hover: #3d68ad;
-    --primary-active: #1b3a6b;
-    --primary-line: #17325c;
+    --primary: #2f80ed;
+    --primary-hover: #5a9df5;
+    --primary-active: #1a73e8;
+    --primary-line: #2f80ed;
     --primary-fg: #ffffff;
 
-    /* ── Оверлей ── */
-    --overlay: rgba(2, 5, 9, 0.66);
+    --overlay: rgba(4, 7, 12, 0.7);
 
-    /* ── Градиенты поверхностей ── */
-    --grad-surface: linear-gradient(180deg, #141d29 0%, #0e1620 100%);
-    --grad-nav: linear-gradient(180deg, #0e1620 0%, #080d14 100%);
-    --grad-hero: linear-gradient(160deg, #16202c 0%, #0b1219 55%, #080d14 100%);
+    --grad-surface: none;
+    --grad-nav: none;
+    --grad-hero: linear-gradient(180deg, #111826 0%, #0d131d 100%);
     --grad-beam-line: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(53, 214, 240, 0.55) 22%,
-      rgba(53, 214, 240, 0.9) 50%,
-      rgba(53, 214, 240, 0.55) 78%,
+      rgba(90, 157, 245, 0.3) 30%,
+      rgba(90, 157, 245, 0.5) 50%,
+      rgba(90, 157, 245, 0.3) 70%,
       transparent 100%
     );
     --grad-beam-line-soft: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(53, 214, 240, 0.28) 30%,
-      rgba(53, 214, 240, 0.45) 50%,
-      rgba(53, 214, 240, 0.28) 70%,
+      rgba(90, 157, 245, 0.16) 30%,
+      rgba(90, 157, 245, 0.26) 50%,
+      rgba(90, 157, 245, 0.16) 70%,
       transparent 100%
     );
 
-    /* ── Тени ── */
-    --shadow-xs: 0 1px 1px 0 rgba(0, 0, 0, 0.32);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.38), 0 1px 3px 0 rgba(0, 0, 0, 0.24);
-    --shadow-base: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.42), 0 6px 16px -4px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 4px 8px -2px rgba(0, 0, 0, 0.45), 0 12px 28px -6px rgba(0, 0, 0, 0.55);
-    --shadow-xl: 0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 24px 48px -12px rgba(0, 0, 0, 0.65);
-    --shadow-panel: -12px 0 40px -12px rgba(0, 0, 0, 0.6);
-    --shadow-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
-    --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-    --shadow-card-hover: 0 4px 14px -4px rgba(0, 0, 0, 0.55),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
-    --shadow-button: 0 1px 2px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-    --shadow-button-quiet: 0 1px 2px 0 rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
-    --shadow-plate: inset 0 -1px 0 0 rgba(0, 0, 0, 0.45);
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 8px 24px -6px rgba(0, 0, 0, 0.55);
+    --shadow-xl: 0 16px 40px -12px rgba(0, 0, 0, 0.65);
+    --shadow-panel: -8px 0 32px -12px rgba(0, 0, 0, 0.6);
+    --shadow-bevel: none;
+    --shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 4px 16px -4px rgba(0, 0, 0, 0.5);
+    --shadow-button: none;
+    --shadow-button-quiet: none;
+    --shadow-plate: none;
 
-    /* ── Фактура ── */
-    --dot-color: rgba(148, 167, 184, 0.16);
-    --grid-color: rgba(148, 167, 184, 0.07);
-    --bloom: radial-gradient(
-      120% 90% at 12% -20%,
-      rgba(53, 214, 240, 0.14) 0%,
-      rgba(53, 214, 240, 0.05) 35%,
-      transparent 68%
-    );
-    --scrollbar: #2c3b4d;
-    --scrollbar-hover: #3f5468;
-    --nav-scrollbar: #1f2c3a;
+    --dot-color: transparent;
+    --grid-color: rgba(90, 157, 245, 0.06);
+    --bloom: none;
+    --scrollbar: #2f3d52;
+    --scrollbar-hover: #445a75;
+    --nav-scrollbar: #2f3d52;
   }
 
-  /* ═══ Статусы: база одна, подложка и текст зависят от темы ═══ */
+  /* ═══ Статусы: подложка и текст переключаются темой ═══ */
   :root,
   [data-theme='light'] {
-    --st-draft: #64748b;
-    --st-draft-soft: #f1f3f7;
-    --st-draft-line: #d5dae3;
-    --st-draft-fg: #455065;
+    --st-draft: #94a3b8;
+    --st-draft-soft: #f3f5f7;
+    --st-draft-line: #e1e5eb;
+    --st-draft-fg: #475569;
 
-    --st-review: #d97706;
-    --st-review-soft: #fef6e7;
-    --st-review-line: #f7dca9;
-    --st-review-fg: #8f4b0b;
+    --st-review: #f59e0b;
+    --st-review-soft: #fffbeb;
+    --st-review-line: #fde68a;
+    --st-review-fg: #b45309;
 
-    --st-confirmed: #0d9488;
-    --st-confirmed-soft: #e6f7f5;
-    --st-confirmed-line: #a9dfd9;
-    --st-confirmed-fg: #0b5f58;
+    --st-confirmed: #16a34a;
+    --st-confirmed-soft: #f0fdf4;
+    --st-confirmed-line: #bbf7d0;
+    --st-confirmed-fg: #15803d;
 
-    --st-conflict: #dc2626;
-    --st-conflict-soft: #feecec;
-    --st-conflict-line: #f6bfbf;
-    --st-conflict-fg: #a31818;
+    --st-conflict: #dc2828;
+    --st-conflict-soft: #fef2f2;
+    --st-conflict-line: #fecaca;
+    --st-conflict-fg: #b91c1c;
 
-    --st-paid: #0284c7;
-    --st-paid-soft: #e7f4fc;
-    --st-paid-line: #afd8f0;
-    --st-paid-fg: #075985;
+    --st-paid: #2474f5;
+    --st-paid-soft: #f0f6ff;
+    --st-paid-line: #bfdbfe;
+    --st-paid-fg: #1d4ed8;
 
     --st-unpaid: #ea580c;
-    --st-unpaid-soft: #fef0e8;
-    --st-unpaid-line: #f8cbae;
-    --st-unpaid-fg: #9a3412;
+    --st-unpaid-soft: #fff7ed;
+    --st-unpaid-line: #fed7aa;
+    --st-unpaid-fg: #c2410c;
 
     --st-done: #7c3aed;
-    --st-done-soft: #f2ecfe;
-    --st-done-line: #d6c6fa;
-    --st-done-fg: #5b21b6;
+    --st-done-soft: #f5f3ff;
+    --st-done-line: #ddd6fe;
+    --st-done-fg: #6d28d9;
 
-    --st-void: #9f1239;
-    --st-void-soft: #fceaef;
-    --st-void-line: #f0becd;
-    --st-void-fg: #831231;
+    --st-void: #be123c;
+    --st-void-soft: #fff1f2;
+    --st-void-line: #fecdd3;
+    --st-void-fg: #9f1239;
   }
 
   [data-theme='dark'] {
-    --st-draft-soft: #1c2531;
-    --st-draft-line: #354050;
-    --st-draft-fg: #a9b6c7;
+    --st-draft-soft: #1a2130;
+    --st-draft-line: #2c364a;
+    --st-draft-fg: #aab4c4;
 
-    --st-review-soft: #2e261c;
-    --st-review-line: #694214;
-    --st-review-fg: #f8be55;
+    --st-review-soft: #2a2113;
+    --st-review-line: #5c4213;
+    --st-review-fg: #fdb022;
 
-    --st-confirmed-soft: #0e2a31;
-    --st-confirmed-line: #0e4f4f;
-    --st-confirmed-fg: #5eead4;
+    --st-confirmed-soft: #0c2419;
+    --st-confirmed-line: #12503a;
+    --st-confirmed-fg: #6ce9a6;
 
-    --st-conflict-soft: #2f1921;
-    --st-conflict-line: #6b1d23;
-    --st-conflict-fg: #fca5a5;
+    --st-conflict-soft: #2c1614;
+    --st-conflict-line: #5e211c;
+    --st-conflict-fg: #fda29b;
 
-    --st-paid-soft: #0c283b;
-    --st-paid-line: #09486b;
-    --st-paid-fg: #7dd3fc;
+    --st-paid-soft: #10233d;
+    --st-paid-line: #1c4373;
+    --st-paid-fg: #93c0fb;
 
-    --st-unpaid-soft: #31211d;
-    --st-unpaid-line: #713417;
-    --st-unpaid-fg: #fdba74;
+    --st-unpaid-soft: #2b1a11;
+    --st-unpaid-line: #5c3117;
+    --st-unpaid-fg: #f7b27a;
 
-    --st-done-soft: #201c41;
-    --st-done-line: #40267c;
-    --st-done-fg: #c4b5fd;
+    --st-done-soft: #1c1936;
+    --st-done-line: #372f6b;
+    --st-done-fg: #bdb4fe;
 
-    --st-void-soft: #251524;
-    --st-void-line: #4f142b;
-    --st-void-fg: #fda4af;
+    --st-void-soft: #2a1220;
+    --st-void-line: #56203c;
+    --st-void-fg: #f4a8c9;
   }
 }
 
@@ -325,8 +308,8 @@
   body {
     @apply bg-canvas font-sans text-base text-content antialiased;
     transition:
-      background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-      color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      background-color 180ms cubic-bezier(0.2, 0, 0, 1),
+      color 180ms cubic-bezier(0.2, 0, 0, 1);
   }
 
   /* Цифры в интерфейсе всегда табличные: количества и даты в колонках
@@ -413,26 +396,26 @@
 
 @layer utilities {
   /* ── ФОКУС ─────────────────────────────────────────────────
-     Фокус-кольцо — луч. Одинаково читается в обеих темах. */
+     Кольцо фирменного синего, одинаково читается в обеих темах. */
   .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
     --tw-ring-offset-color: var(--surface);
   }
 
   .focus-ring-nav {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
     --tw-ring-offset-color: var(--nav);
   }
 
-  /* ── ГЛУБИНА ───────────────────────────────────────────────
-     Три слоя: граница 1px + фаска-блик сверху + ambient-тень. */
+  /* ── ПОВЕРХНОСТЬ ───────────────────────────────────────────
+     Плоская заливка и тонкая граница вместо фаски и градиента. */
   .surface-raised {
-    background-image: var(--grad-surface);
+    background-color: var(--surface);
     box-shadow: var(--shadow-card);
   }
 
-  /* ── СВЕТ ──────────────────────────────────────────────────
-     Тонкая светящаяся линия: кромка каркаса, разделитель сводки. */
+  /* ── АКЦЕНТНАЯ ЛИНИЯ ───────────────────────────────────────
+     Осталась под шапкой и активной вкладкой; свечения больше нет. */
   .beam-edge {
     background-image: var(--grad-beam-line);
     height: 1px;
@@ -445,7 +428,10 @@
     width: 100%;
   }
 
-  /* ── ФАКТУРА ───────────────────────────────────────────── */
+  /* ── ФАКТУРА ───────────────────────────────────────────────
+     Точечная сетка и свечение из угла погашены переменными:
+     у ADATA поверхности чистые. Классы оставлены, чтобы разметку
+     не переписывать. */
   .dot-grid {
     background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
     background-size: 18px 18px;
@@ -458,7 +444,6 @@
     background-size: 24px 24px;
   }
 
-  /* Радиальное свечение из угла — убирает «залитый прямоугольник» */
   .bloom-beam {
     background-image: var(--bloom);
   }

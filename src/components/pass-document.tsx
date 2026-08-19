@@ -28,9 +28,9 @@ export function PassDocument({
 
   const stamp =
     application.status === 'cancelled'
-      ? { label: 'АННУЛИРОВАН', color: '#9F1239' }
+      ? { label: 'АННУЛИРОВАН', color: '#BE123C' }
       : application.status === 'expired'
-        ? { label: 'СРОК ИСТЁК', color: '#5B21B6' }
+        ? { label: 'СРОК ИСТЁК', color: '#6D28D9' }
         : null
 
   const totalPositions = application.items.length
@@ -62,11 +62,11 @@ export function PassDocument({
       ) : null}
 
       {/* Шапка бланка */}
-      <header className="flex items-start justify-between gap-4 border-b-2 border-navy-600 pb-4">
+      <header className="flex items-start justify-between gap-4 border-b-2 border-brand-600 pb-4">
         <div className="flex items-start gap-3">
           <BrandMark size={40} />
           <div>
-            <p className="text-md font-semibold leading-tight text-navy-600">
+            <p className="text-md font-semibold leading-tight text-brand-600">
               АО «НК «QazExpoCongress»
             </p>
             <p className="text-xs text-ink-500">Астана, Республика Казахстан</p>
@@ -74,7 +74,7 @@ export function PassDocument({
         </div>
         <div className="text-right">
           <p className="font-mono text-2xs uppercase tracking-plate text-ink-500">Сервис</p>
-          <p className="text-base font-semibold text-navy-600">QazExpoPass</p>
+          <p className="text-base font-semibold text-brand-600">QazExpoPass</p>
         </div>
       </header>
 
@@ -83,7 +83,7 @@ export function PassDocument({
       </h1>
 
       <div className="mt-2 flex items-baseline justify-center gap-3">
-        <p className="font-mono text-lg font-semibold text-navy-600">
+        <p className="font-mono text-lg font-semibold text-brand-600">
           № {application.registrationNumber ?? '—'}
         </p>
         <p className="text-xs text-ink-500">
@@ -93,9 +93,9 @@ export function PassDocument({
 
       {/* Операция и дата — ключевые реквизиты на контрольно-пропускном пункте */}
       <div className="mt-5 flex items-stretch gap-4">
-        <div className="flex-1 rounded border-2 border-navy-600 px-4 py-3 text-center">
+        <div className="flex-1 rounded border-2 border-brand-600 px-4 py-3 text-center">
           <p className="text-2xs font-semibold uppercase tracking-label text-ink-500">Операция</p>
-          <p className="mt-0.5 text-xl font-bold uppercase tracking-plate text-navy-600">
+          <p className="mt-0.5 text-xl font-bold uppercase tracking-plate text-brand-600">
             {OPERATIONS[application.operation].label}
           </p>
         </div>
@@ -215,7 +215,7 @@ export function PassDocument({
 
       {/* Причина аннулирования печатается на самом бланке */}
       {application.status === 'cancelled' && application.decisionComment ? (
-        <p className="mt-4 rounded border border-[#9F1239] px-3 py-2 text-xs text-[#831231]">
+        <p className="mt-4 rounded border border-[#BE123C] px-3 py-2 text-xs text-[#9F1239]">
           <span className="font-semibold uppercase tracking-label">Аннулирован. </span>
           {application.decisionComment}
         </p>
@@ -275,7 +275,7 @@ function Endorsement({
   return (
     <div
       className="rounded border p-2.5"
-      style={{ borderColor: done ? '#A9DFD9' : '#DFE3EA', background: done ? '#F4FBFA' : '#FFFFFF' }}
+      style={{ borderColor: done ? '#BBF7D0' : '#E1E5EB', background: done ? '#F0FDF4' : '#FFFFFF' }}
     >
       <p className="text-2xs font-semibold uppercase tracking-label text-ink-500">{title}</p>
       <p className="mt-1 text-xs font-medium text-ink-900">{name}</p>
@@ -283,7 +283,7 @@ function Endorsement({
       {detail ? <p className="mt-0.5 font-mono text-2xs text-ink-500">{detail}</p> : null}
       {at ? (
         <p className="mt-1 flex items-center gap-1 text-2xs tabular-nums text-ink-500">
-          <span aria-hidden="true" style={{ color: '#0D9488' }}>
+          <span aria-hidden="true" style={{ color: '#16A34A' }}>
             ✓
           </span>
           {formatDateTime(at)}

@@ -13,8 +13,9 @@ import type { ApplicationStatus } from '@/lib/types'
  *                            ─────────────────────────
  *                            сетка полей с CAPS-метками
  *
- * Глубина — три слоя: микроградиент поверхности, фаска-блик 1px сверху
- * и мягкая ambient-тень (shadow-card). Плоских прямоугольников нет.
+ * Стиль ADATA: плоская белая поверхность, тонкая граница, крупное
+ * скругление. Глубина держится на границе, а не на тени — подъёма
+ * при наведении нет, меняется только фон и цвет рамки.
  */
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   status?: ApplicationStatus
@@ -29,10 +30,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
     <div
       ref={ref}
       className={cn(
-        'relative overflow-hidden rounded-md border border-hairline bg-surface-raised shadow-card',
+        'relative overflow-hidden rounded-md border border-hairline bg-surface',
         status && 'pl-rail',
         interactive &&
-          'focus-ring cursor-pointer text-left transition-all duration-base ease-decelerate hover:-translate-y-px hover:border-hairline-strong hover:shadow-card-hover',
+          'focus-ring cursor-pointer text-left transition-colors duration-base ease-decelerate hover:border-hairline-strong hover:bg-surface-sunken',
         className,
       )}
       {...props}
@@ -46,7 +47,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(
 export const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   function CardHeader({ className, ...props }, ref) {
     return (
-      <div ref={ref} className={cn('flex flex-col gap-2 px-4 pb-3 pt-3.5', className)} {...props} />
+      <div ref={ref} className={cn('flex flex-col gap-2 px-6 pb-4 pt-5', className)} {...props} />
     )
   },
 )
@@ -77,7 +78,7 @@ export const CardBody = React.forwardRef<
   return (
     <div
       ref={ref}
-      className={cn('px-4 py-3', divided && 'border-t border-hairline-soft', className)}
+      className={cn('px-6 py-4', divided && 'border-t border-hairline-soft', className)}
       {...props}
     />
   )
@@ -89,7 +90,7 @@ export const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
       <div
         ref={ref}
         className={cn(
-          'flex flex-wrap items-center justify-between gap-2 border-t border-hairline-soft bg-surface-sunken px-4 py-2.5',
+          'flex flex-wrap items-center justify-between gap-2 border-t border-hairline-soft bg-surface-sunken px-6 py-3.5',
           className,
         )}
         {...props}
@@ -195,9 +196,9 @@ export function StatTile({
       type={onClick ? 'button' : undefined}
       onClick={onClick}
       className={cn(
-        'relative overflow-hidden rounded-md border border-hairline bg-surface-raised p-3.5 text-left shadow-card',
+        'relative overflow-hidden rounded-md border border-hairline bg-surface p-6 text-left',
         onClick &&
-          'focus-ring group transition-all duration-base ease-decelerate hover:-translate-y-px hover:border-hairline-strong hover:shadow-card-hover',
+          'focus-ring group transition-colors duration-base ease-decelerate hover:border-accent-line hover:bg-accent-soft/40',
         className,
       )}
     >

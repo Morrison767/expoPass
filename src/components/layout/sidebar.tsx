@@ -51,7 +51,7 @@ export function Sidebar() {
     <nav
       aria-label="Основная навигация"
       className={cn(
-        'on-nav relative hidden h-full shrink-0 flex-col border-r border-nav-line bg-surface-nav transition-[width] duration-slow ease-decelerate lg:flex',
+        'on-nav relative hidden h-full shrink-0 flex-col border-r border-nav-line bg-nav transition-[width] duration-slow ease-decelerate lg:flex',
         collapsed ? 'w-sidebar-collapsed' : 'w-sidebar',
       )}
     >
@@ -63,7 +63,7 @@ export function Sidebar() {
         {groups.map((group, groupIndex) => (
           <div key={group.key} className={cn(groupIndex > 0 && 'mt-4')}>
             {!collapsed ? (
-              <p className="mb-1 px-3 text-2xs font-semibold uppercase tracking-label text-nav-subtle">
+              <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-label text-nav-faint">
                 {group.label}
               </p>
             ) : groupIndex > 0 ? (
@@ -82,22 +82,16 @@ export function Sidebar() {
                       aria-current={active ? 'page' : undefined}
                       title={collapsed ? item.label : undefined}
                       className={cn(
-                        'focus-ring-nav relative flex h-8 w-full items-center gap-2.5 rounded px-2 text-base transition-colors duration-fast',
+                        'focus-ring-nav relative flex h-11 w-full items-center gap-3 rounded-sm px-3 text-sm transition-colors duration-fast',
                         collapsed && 'justify-center px-0',
                         active
-                          ? 'bg-nav-active font-medium text-accent-strong'
+                          ? 'bg-nav-active font-semibold text-nav-fg'
                           : 'text-nav-muted hover:bg-nav-hover hover:text-nav-fg',
                       )}
                     >
-                      {active ? (
-                        <span
-                          aria-hidden="true"
-                          className="absolute left-0 h-4 w-rail rounded-r-sm bg-accent shadow-beam-sm"
-                        />
-                      ) : null}
                       <Icon
                         name={item.icon}
-                        size={15}
+                        size={18}
                         className={cn(
                           'transition-colors duration-fast',
                           active ? 'text-accent' : 'text-nav-faint',
@@ -150,7 +144,7 @@ export function Sidebar() {
           <div className="flex items-center gap-1.5 border-t border-nav-line px-3 py-2">
             <span
               aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-status-confirmed-base shadow-beam-sm"
+              className="h-1.5 w-1.5 rounded-full bg-status-confirmed-base"
             />
             <span className="truncate text-2xs text-nav-faint">Прототип · Этап 1</span>
           </div>
@@ -174,7 +168,7 @@ export function MobileNav() {
   return (
     <nav
       aria-label="Разделы"
-      className="on-nav sticky bottom-0 z-sticky flex shrink-0 items-stretch gap-px overflow-x-auto border-t border-nav-line bg-surface-nav lg:hidden"
+      className="on-nav sticky bottom-0 z-sticky flex shrink-0 items-stretch gap-px overflow-x-auto border-t border-nav-line bg-nav lg:hidden"
     >
       {items.map((item) => {
         const active = pathname === item.path || pathname.startsWith(`${item.path}/`)

@@ -5,50 +5,51 @@ import { cn } from '@/lib/cn'
 import { Icon } from './icon'
 
 /**
- * КНОПКИ — геометрия и палитра перенесены из ИС учёта мероприятий.
- * Залитые получают верхний блик (shadow-button) — кромка читается как
- * фрезерованная. Фокус — луч, не серое кольцо. Оба варианта темы
- * обслуживаются одними классами: цвета приходят из семантических токенов.
+ * КНОПКИ в геометрии ADATA: высоты 32 / 40 / 44px, скругление 12px,
+ * полужирный текст 14px, плоская заливка. Теней нет — глубина держится
+ * на цвете и границе.
  *
- * Варианты *-nav — для кнопок внутри каркаса (топбар, шапка панели).
+ * Варианты *-nav — для кнопок внутри каркаса. Шапка у ADATA белая,
+ * поэтому от основных они отличаются только источником токенов.
  */
 const buttonVariants = cva(
   cn(
-    'inline-flex select-none items-center justify-center whitespace-nowrap border font-medium',
-    'transition-all duration-fast ease-decelerate',
-    'disabled:pointer-events-none disabled:opacity-45 disabled:shadow-none',
+    'inline-flex select-none items-center justify-center whitespace-nowrap border font-semibold',
+    'transition-colors duration-fast ease-decelerate',
+    'disabled:pointer-events-none disabled:opacity-45',
   ),
   {
     variants: {
       variant: {
         primary:
-          'focus-ring bg-primary text-primary-fg border-primary-line hover:bg-primary-hover active:bg-primary-active shadow-button',
+          'focus-ring bg-primary text-primary-fg border-transparent hover:bg-primary-hover active:bg-primary-active',
         secondary:
-          'focus-ring bg-surface-raised text-content border-hairline-strong hover:border-content-faint active:bg-surface-muted shadow-button-quiet',
+          'focus-ring bg-surface text-content border-hairline-strong hover:bg-surface-muted hover:border-content-faint active:bg-surface-muted',
         danger:
-          'focus-ring bg-danger-600 text-white border-danger-800 hover:bg-danger-500 active:bg-danger-700 shadow-button',
+          'focus-ring bg-danger-600 text-white border-transparent hover:bg-danger-500 active:bg-danger-700',
         ghost:
-          'focus-ring bg-transparent text-content-muted border-transparent hover:bg-surface-muted hover:text-content active:bg-surface-sunken',
+          'focus-ring bg-transparent text-content-muted border-transparent hover:bg-surface-muted hover:text-content active:bg-surface-muted',
         subtle:
-          'focus-ring bg-accent-soft text-accent-strong border-accent-line hover:brightness-[0.97] active:brightness-95',
+          'focus-ring bg-accent-soft text-accent-strong border-accent-line hover:bg-brand-100 active:bg-brand-200',
         link: 'focus-ring bg-transparent text-accent-fg border-transparent underline-offset-2 hover:underline hover:text-accent-strong px-0',
-        /** Главный CTA сводных экранов: свет как призыв к действию */
-        beam: 'focus-ring bg-accent text-content-inverse border-transparent hover:shadow-beam active:brightness-95 shadow-button',
+        /** Синоним primary: свечение из прежней системы убрано */
+        beam: 'focus-ring bg-primary text-primary-fg border-transparent hover:bg-primary-hover active:bg-primary-active',
         /* ── Внутри каркаса ── */
         'primary-nav':
-          'focus-ring-nav bg-accent text-content-inverse border-transparent font-semibold hover:shadow-beam active:brightness-95 shadow-button',
+          'focus-ring-nav bg-primary text-primary-fg border-transparent hover:bg-primary-hover active:bg-primary-active',
         'secondary-nav':
-          'focus-ring-nav bg-nav-hover text-nav-fg border-nav-line hover:border-hairline-strong active:brightness-95 shadow-button-quiet',
+          'focus-ring-nav bg-surface text-nav-fg border-nav-line hover:bg-nav-hover active:bg-nav-hover',
         'ghost-nav':
           'focus-ring-nav bg-transparent text-nav-subtle border-transparent hover:bg-nav-hover hover:text-nav-fg',
       },
       size: {
-        sm: 'h-control-sm gap-1.5 rounded-sm px-2.5 text-xs',
-        md: 'h-control gap-1.5 rounded px-3 text-base',
-        lg: 'h-control-lg gap-2 rounded-md px-4 text-md',
+        // Высоты и радиусы ADATA: h-8 / h-10 / h-11, скругление 12px
+        sm: 'h-control-sm gap-1.5 rounded-sm px-3 text-sm',
+        md: 'h-control gap-2 rounded px-4 text-sm',
+        lg: 'h-control-lg gap-2 rounded px-5 text-sm',
         'icon-sm': 'h-control-sm w-control-sm rounded-sm',
-        icon: 'h-control w-control rounded',
-        'icon-lg': 'h-control-lg w-control-lg rounded-md',
+        icon: 'h-control w-control rounded-sm',
+        'icon-lg': 'h-control-lg w-control-lg rounded',
       },
       block: { true: 'w-full', false: '' },
     },

@@ -1,27 +1,26 @@
 import type { Metadata } from 'next'
-import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { Open_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
 /**
- * ШРИФТЫ — те же, что в ИС учёта мероприятий Общества.
- * IBM Plex Sans — кириллица-native, инженерно-институциональный характер,
- * читаемость на 13px. IBM Plex Mono — машинные идентификаторы: номера
- * пропусков, коды объектов, серийные номера ТМЦ.
+ * ШРИФТЫ.
  *
- * В старом проекте подключались через Google Fonts <link>; здесь —
- * next/font, чтобы файлы обслуживались с собственного домена.
+ * Open Sans — то же семейство, что в ADATA (взято из их layout.tsx,
+ * а не подобрано на глаз). Моноширинный в ADATA не используется;
+ * здесь он нужен машинным идентификаторам: номера пропусков, коды
+ * объектов, серийные номера ТМЦ.
  */
-const plexSans = IBM_Plex_Sans({
+const sans = Open_Sans({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-plex-sans',
+  variable: '--font-sans',
   display: 'swap',
 })
 
-const plexMono = IBM_Plex_Mono({
+const mono = JetBrains_Mono({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600'],
-  variable: '--font-plex-mono',
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -50,10 +49,10 @@ const THEME_BOOTSTRAP = `
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" data-theme="light" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="ru" data-theme="light" className={`${sans.variable} ${mono.variable}`}>
       <head>
-        <meta name="theme-color" content="#1B3A6B" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#080D14" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#2474F5" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0C121C" media="(prefers-color-scheme: dark)" />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>
       <body>{children}</body>

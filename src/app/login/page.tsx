@@ -110,7 +110,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
-      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-surface-nav px-4 sm:px-6">
+      <header className="on-nav relative flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-nav px-4 sm:px-6">
         <span aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
         <Link href="/" className="focus-ring-nav relative rounded">
           <BrandLock size={30} onDark />
@@ -250,8 +250,8 @@ export default function LoginPage() {
                     onClick={() => quickLogin(user.id)}
                     aria-label={`Войти как ${fullName(user)}`}
                     className={cn(
-                      'focus-ring group relative flex h-full w-full flex-col overflow-hidden rounded-md border border-hairline bg-surface-raised p-3.5 text-left shadow-card',
-                      'transition-all duration-base ease-decelerate hover:-translate-y-px hover:border-hairline-strong hover:shadow-card-hover',
+                      'focus-ring group relative flex h-full w-full flex-col overflow-hidden rounded-md border border-hairline bg-surface p-3.5 text-left shadow-card',
+                      'transition-all duration-base ease-decelerate hover:border-hairline-strong',
                     )}
                   >
                     <div className="flex items-start gap-2.5">

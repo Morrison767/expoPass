@@ -43,7 +43,7 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
       {/* Шапка публичной части */}
-      <header className="on-nav relative z-dropdown flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-surface-nav px-4 sm:px-6">
+      <header className="on-nav relative z-dropdown flex h-topbar shrink-0 items-center justify-between gap-3 border-b border-nav-line bg-nav px-4 sm:px-6">
         <span aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
         <div className="relative">
           <BrandLock size={30} onDark />
@@ -113,7 +113,7 @@ export default function LandingPage() {
             {STEPS.map((step, index) => (
               <li
                 key={step.title}
-                className="relative overflow-hidden rounded-md border border-hairline bg-surface-raised p-4 shadow-card"
+                className="relative overflow-hidden rounded-md border border-hairline bg-surface p-4 shadow-card"
               >
                 <div className="flex items-center gap-2">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded border border-accent-line bg-accent-soft text-accent-fg">
@@ -216,6 +216,6 @@ function cnStage(current: boolean) {
     'rounded-md border p-4 shadow-card',
     current
       ? 'border-accent-line bg-accent-soft/40'
-      : 'border-hairline bg-surface-raised',
+      : 'border-hairline bg-surface',
   ].join(' ')
 }

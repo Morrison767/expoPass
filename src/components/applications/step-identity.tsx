@@ -229,7 +229,7 @@ export function StepIdentity({
                   </div>
                 ) : (
                   <div className="text-center">
-                    <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-md border border-accent-line bg-accent-soft text-accent-fg shadow-beam-sm">
+                    <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-md border border-accent-line bg-accent-soft text-accent-fg">
                       <Icon name="pen" size={22} />
                     </span>
                     <p className="mt-3 text-md font-medium text-content">
@@ -416,7 +416,7 @@ function RuleCard({
           aria-hidden="true"
           className={cn(
             'absolute inset-y-0 left-0 w-rail',
-            signal ? 'bg-signal-500' : 'bg-accent shadow-beam-sm',
+            signal ? 'bg-signal-500' : 'bg-accent',
           )}
         />
       ) : null}

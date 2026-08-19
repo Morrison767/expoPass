@@ -20,9 +20,9 @@ const badgeVariants = cva(
         primary: 'bg-primary text-primary-fg border-primary-line',
       },
       size: {
-        sm: 'h-[18px] gap-1 rounded-sm px-1.5 text-2xs',
-        md: 'h-5.5 gap-1.5 rounded px-2 text-xs',
-        lg: 'h-6 gap-1.5 rounded px-2.5 text-base',
+        sm: 'h-5 gap-1 rounded-full px-2 text-2xs',
+        md: 'h-6 gap-1.5 rounded-full px-2.5 text-xs',
+        lg: 'h-7 gap-1.5 rounded-full px-3 text-base',
       },
     },
     defaultVariants: { tone: 'neutral', size: 'md' },
@@ -87,13 +87,13 @@ export function Plate({
   className?: string
 }) {
   const tones = {
-    default: 'border-hairline-strong bg-surface-sunken text-content-subtle',
-    accent: 'border-accent-line bg-accent-soft text-accent-strong',
+    default: 'border-transparent bg-surface-muted text-content-muted',
+    accent: 'border-transparent bg-accent-soft text-accent-fg',
   }
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-sm border px-1.5 py-px font-mono text-2xs font-semibold uppercase tracking-plate',
+        'inline-flex items-center rounded border px-2 py-0.5 font-mono text-2xs font-semibold tracking-plate',
         tones[tone],
         className,
       )}

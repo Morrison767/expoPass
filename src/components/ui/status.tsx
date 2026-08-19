@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import { getStatusMeta, getStatusColors, ACCOUNT_STATUSES } from '@/design/statuses'
+import { getStatusMeta, ACCOUNT_STATUSES } from '@/design/statuses'
 import { Icon } from './icon'
 import type { ApplicationStatus, AccountStatus } from '@/lib/types'
 import type { StatusToken } from '@/design/tokens'
@@ -10,8 +10,8 @@ import type { StatusToken } from '@/design/tokens'
  * ═══════════════════════════════════════════════════════════════
  *
  * StatusRail — кромка 3px слева от любого объекта, несущего статус:
- * карточка заявки, строка реестра, слайд-панель. Кромка светится своим
- * тоном — читается как индикатор на приборе.
+ * карточка заявки, строка реестра. Плоская заливка без свечения —
+ * у ADATA нет светящихся элементов.
  *
  * Доступность: цвет никогда не работает один. Бейдж всегда несёт
  * иконку-форму + текстовую метку, а «отклонена» дополнительно получает
@@ -86,9 +86,9 @@ const RAIL_TEXT: Record<StatusToken, string> = {
 }
 
 const BADGE_SIZES = {
-  sm: 'h-[18px] gap-1 rounded-sm px-1.5 text-2xs tracking-normal',
-  md: 'h-5.5 gap-1.5 rounded px-2 text-xs',
-  lg: 'h-6 gap-1.5 rounded px-2.5 text-base',
+  sm: 'h-5 gap-1 rounded-full px-2 text-2xs tracking-normal',
+  md: 'h-6 gap-1.5 rounded-full px-2.5 text-xs',
+  lg: 'h-7 gap-1.5 rounded-full px-3 text-base',
 }
 
 const BADGE_ICON_SIZE = { sm: 10, md: 12, lg: 13 }
@@ -189,7 +189,6 @@ export function StatusRail({
   glow?: boolean
 }) {
   const meta = getStatusMeta(status)
-  const colors = getStatusColors(status)
   const isRejected = status === 'rejected'
 
   return (
@@ -201,7 +200,6 @@ export function StatusRail({
         rounded && 'rounded-l-[5px]',
         className,
       )}
-      style={glow ? { boxShadow: `0 0 10px 0 ${colors.glow}` } : undefined}
     />
   )
 }
@@ -221,17 +219,12 @@ export function StatusDot({
   className?: string
 }) {
   const meta = getStatusMeta(status)
-  const colors = getStatusColors(status)
 
   const dot = (
     <span
       aria-hidden="true"
       className={cn('inline-block shrink-0 rounded-full', RAIL_BG[meta.token], className)}
-      style={{
-        width: size,
-        height: size,
-        boxShadow: glow ? `0 0 8px 0 ${colors.glow}` : undefined,
-      }}
+      style={{ width: size, height: size }}
     />
   )
 

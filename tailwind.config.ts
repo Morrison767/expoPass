@@ -186,8 +186,10 @@ const config: Config = {
       },
       zIndex,
       letterSpacing: {
-        plate: '0.08em',
-        label: '0.12em',
+        // tracking-wide у ADATA — 0.025em; прежние 0.08–0.12em были
+        // приёмом «приборной панели» и в новой системе неуместны
+        plate: '0.025em',
+        label: '0.025em',
       },
       transitionDuration: {
         instant: motion.duration.instant,

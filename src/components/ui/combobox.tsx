@@ -99,7 +99,7 @@ export function Combobox({
           'hover:border-content-faint',
           sizes[size],
           open
-            ? 'border-accent shadow-beam-sm'
+            ? 'border-accent ring-2 ring-accent/20'
             : invalid
               ? 'border-status-conflict-border'
               : 'border-hairline-strong',

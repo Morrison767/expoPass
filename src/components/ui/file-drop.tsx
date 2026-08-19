@@ -60,7 +60,7 @@ export function FileDrop({
         disabled
           ? 'cursor-not-allowed border-hairline bg-surface-muted opacity-60'
           : dragging
-            ? 'border-accent bg-accent-soft shadow-beam-sm'
+            ? 'border-accent bg-accent-soft ring-2 ring-accent/20'
             : 'border-hairline-strong bg-surface-sunken hover:border-content-faint',
         className,
       )}
@@ -105,7 +105,7 @@ export function FileDrop({
           onClick={() => inputRef.current?.click()}
           disabled={disabled}
           className={cn(
-            'focus-ring shrink-0 rounded border border-hairline-strong bg-surface-raised px-3 text-base font-medium text-content shadow-button-quiet transition-all duration-fast',
+            'focus-ring shrink-0 rounded border border-hairline-strong bg-surface px-3 text-base font-medium text-content shadow-button-quiet transition-all duration-fast',
             'hover:border-content-faint active:bg-surface-muted',
             'disabled:pointer-events-none disabled:opacity-45',
             compact ? 'h-control-sm text-xs' : 'mt-1 h-control',

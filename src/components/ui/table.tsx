@@ -9,7 +9,7 @@ import { Icon } from './icon'
  */
 export function TableWrap({ className, children }: { className?: string; children: React.ReactNode }) {
   return (
-    <div className={cn('overflow-hidden rounded-md border border-hairline bg-surface shadow-card', className)}>
+    <div className={cn('overflow-hidden rounded-md border border-hairline bg-surface', className)}>
       <div className="overflow-x-auto">{children}</div>
     </div>
   )
@@ -60,7 +60,7 @@ export const TableHead = React.forwardRef<
     <th
       ref={ref}
       className={cn(
-        'h-row whitespace-nowrap border-b border-hairline px-3 text-2xs font-semibold uppercase tracking-label text-content-faint',
+        'h-row whitespace-nowrap border-b border-hairline px-4 text-xs font-semibold uppercase tracking-label text-content-faint',
         className,
       )}
       {...props}
@@ -72,7 +72,7 @@ export const TableCell = React.forwardRef<
   HTMLTableCellElement,
   React.TdHTMLAttributes<HTMLTableCellElement>
 >(function TableCell({ className, ...props }, ref) {
-  return <td ref={ref} className={cn('h-row-lg px-3 text-base text-content-muted', className)} {...props} />
+  return <td ref={ref} className={cn('h-row-lg px-4 text-sm text-content-muted', className)} {...props} />
 })
 
 /** Строка-заглушка при пустом результате */
@@ -115,7 +115,7 @@ export function TableToolbar({
   return (
     <div
       className={cn(
-        'flex flex-wrap items-center justify-between gap-2 border-b border-hairline bg-surface-sunken px-3 py-2.5',
+        'flex flex-wrap items-center justify-between gap-2 border-b border-hairline bg-surface-sunken px-4 py-3',
         className,
       )}
     >

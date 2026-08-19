@@ -272,7 +272,7 @@ function WizardContent() {
       </PageBody>
 
       {/* Нижняя панель навигации по шагам */}
-      <div className="sticky bottom-0 z-sticky border-t border-hairline bg-surface-raised px-4 py-2.5 shadow-lg sm:px-5">
+      <div className="sticky bottom-0 z-sticky border-t border-hairline bg-surface px-4 py-2.5 shadow-lg sm:px-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Button
             variant="secondary"
@@ -347,7 +347,7 @@ function ProgressBar({
                   className={cn(
                     'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-2xs font-semibold tabular-nums transition-colors duration-base',
                     active
-                      ? 'border-accent bg-accent text-content-inverse shadow-beam-sm'
+                      ? 'border-accent bg-accent text-content-inverse'
                       : done
                         ? 'border-status-confirmed-border bg-status-confirmed-soft text-status-confirmed-text'
                         : 'border-hairline-strong bg-surface text-content-faint',
