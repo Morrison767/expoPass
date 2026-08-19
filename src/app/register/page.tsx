@@ -260,7 +260,7 @@ export default function RegisterPage() {
         {/* ─────────── Шаг 1: форма ─────────── */}
         {step === 'form' ? (
           <>
-            <h1 className="text-2xl font-semibold text-content">Регистрация в QazExpoPass</h1>
+            <h1 className="text-lg font-bold tracking-tight text-content sm:text-xl">Регистрация в QazExpoPass</h1>
             <p className="mt-1.5 text-md text-content-subtle">
               После регистрации учётная запись проходит подтверждение администратором. До
               подтверждения создание заявок недоступно.
@@ -624,7 +624,7 @@ export default function RegisterPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-accent-line bg-accent-soft text-accent-fg">
                 <Icon name="mail" size={22} />
               </span>
-              <h1 className="mt-3 text-2xl font-semibold text-content">
+              <h1 className="mt-3 text-lg font-bold tracking-tight text-content sm:text-xl">
                 Мы отправили код подтверждения
               </h1>
               <p className="mt-1.5 text-md text-content-subtle">

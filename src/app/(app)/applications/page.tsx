@@ -167,7 +167,7 @@ function ApplicationsContent() {
               <Icon name="inbox" size={26} />
             </span>
             <div>
-              <p className="text-xl font-semibold text-content">У вас пока нет заявок</p>
+              <p className="text-lg font-bold tracking-tight text-content">У вас пока нет заявок</p>
               <p className="mt-1 max-w-md text-md text-content-subtle">
                 Оформите материальный пропуск на внос либо вынос товарно-материальных ценностей —
                 заявка появится в этом списке.

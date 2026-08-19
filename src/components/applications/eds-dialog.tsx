@@ -235,7 +235,7 @@ export function EdsDialog({
                   >
                     <Icon name="check" size={26} strokeWidth={2.4} />
                   </motion.span>
-                  <p className="mt-3 text-xl font-semibold text-content">Подпись успешна</p>
+                  <p className="mt-3 text-lg font-bold tracking-tight text-content">Подпись успешна</p>
                   <p className="mt-0.5 text-base text-content-subtle">
                     Заявка подписана и готова к отправке
                   </p>

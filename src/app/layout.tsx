@@ -1,26 +1,22 @@
 import type { Metadata, Viewport } from 'next'
-import { Open_Sans, JetBrains_Mono } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
 import './globals.css'
 
 /**
- * ШРИФТЫ.
+ * ШРИФТ.
  *
- * Open Sans — то же семейство, что в ADATA (взято из их layout.tsx,
- * а не подобрано на глаз). Моноширинный в ADATA не используется;
- * здесь он нужен машинным идентификаторам: номера пропусков, коды
- * объектов, серийные номера ТМЦ.
+ * Open Sans — то же семейство, что в ADATA (взято из их layout.tsx).
+ *
+ * Моноширинный вебшрифт намеренно не подключается: ADATA использует
+ * font-mono два десятка раз, но своего начертания не грузит — падает
+ * на системный стек. Делаем так же. Плюс один шрифт меньше в загрузке,
+ * и номера документов выглядят нейтральнее, чем в характерном
+ * «программистском» начертании.
  */
 const sans = Open_Sans({
   subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
-  display: 'swap',
-})
-
-const mono = JetBrains_Mono({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600'],
-  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -69,7 +65,7 @@ const THEME_BOOTSTRAP = `
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" data-theme="light" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="ru" data-theme="light" className={sans.variable}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>

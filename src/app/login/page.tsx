@@ -129,7 +129,7 @@ export default function LoginPage() {
         <div className="grid gap-6 lg:grid-cols-[22rem_minmax(0,1fr)]">
           {/* ─────────── Форма входа ─────────── */}
           <section>
-            <h1 className="text-2xl font-semibold text-content">Вход</h1>
+            <h1 className="text-lg font-bold tracking-tight text-content sm:text-xl">Вход</h1>
             <p className="mt-1.5 text-base text-content-subtle">
               Адрес электронной почты используется как логин.
             </p>

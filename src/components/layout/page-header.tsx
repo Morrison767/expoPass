@@ -34,7 +34,7 @@ export function PageHeader({
                 <Icon name={icon} size={15} />
               </span>
             ) : null}
-            <h1 className="min-w-0 truncate text-xl font-semibold leading-tight text-content sm:text-2xl">
+            <h1 className="min-w-0 truncate text-lg font-bold tracking-tight text-content sm:text-xl">
               {title}
             </h1>
             {plate ? <Plate className="mt-0.5">{plate}</Plate> : null}
@@ -84,7 +84,7 @@ export function StagePlaceholder({
         <Icon name={icon} size={22} />
       </span>
       <div>
-        <h2 className="text-xl font-semibold text-content">{title}</h2>
+        <h2 className="text-lg font-bold tracking-tight text-content">{title}</h2>
         <p className="mt-1 text-md text-content-subtle">Раздел в разработке — Этап {stage}</p>
       </div>
       {description ? (

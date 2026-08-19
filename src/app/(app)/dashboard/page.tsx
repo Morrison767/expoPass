@@ -92,10 +92,13 @@ export default function DashboardPage() {
     <>
       <PageHeader
         icon="dashboard"
-        title={`Здравствуйте, ${user.firstName}`}
+        title="Главная"
         subtitle={
           <span className="flex flex-wrap items-center gap-1.5">
-            <span>Вы работаете в роли</span>
+            <span className="text-content-muted">
+              {[user.lastName, user.firstName, user.middleName].filter(Boolean).join(' ')}
+            </span>
+            <span className="text-content-faint">·</span>
             <Badge tone="navy" size="sm" icon={ROLES[activeRole].icon}>
               {ROLES[activeRole].label}
             </Badge>

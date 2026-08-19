@@ -58,7 +58,7 @@ export function StepSuccess({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.3 }}
         >
-          <h1 className="mt-5 text-3xl font-semibold text-content">Заявка отправлена</h1>
+          <h1 className="mt-5 text-2xl font-bold tracking-tight text-content">Заявка отправлена</h1>
           <p className="mt-2 max-w-lg text-md leading-relaxed text-content-subtle">
             Заявка зарегистрирована в системе и направлена администратору выбранного объекта.
             Уведомление о решении придёт в личный кабинет и на электронную почту.

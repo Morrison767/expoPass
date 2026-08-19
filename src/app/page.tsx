@@ -104,7 +104,7 @@ export default function LandingPage() {
 
         {/* Как это работает */}
         <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-          <h2 className="text-xl font-semibold text-content">Как оформляется материальный пропуск</h2>
+          <h2 className="text-lg font-bold tracking-tight text-content">Как оформляется материальный пропуск</h2>
           <p className="mt-1 text-base text-content-subtle">
             Четыре шага от заполнения формы до готового документа
           </p>
@@ -149,7 +149,7 @@ export default function LandingPage() {
 
         {/* Предстоящие этапы */}
         <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-          <h2 className="text-xl font-semibold text-content">Развитие сервиса</h2>
+          <h2 className="text-lg font-bold tracking-tight text-content">Развитие сервиса</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             {[
               {

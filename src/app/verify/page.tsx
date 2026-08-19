@@ -117,7 +117,7 @@ function VerifyContent() {
       </header>
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-10 sm:px-6">
-        <h1 className="text-2xl font-semibold text-content">Проверка материального пропуска</h1>
+        <h1 className="text-lg font-bold tracking-tight text-content sm:text-xl">Проверка материального пропуска</h1>
         <p className="mt-1.5 text-md text-content-subtle">
           Введите регистрационный номер документа или отсканируйте QR-код на пропуске.
         </p>

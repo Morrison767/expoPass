@@ -57,7 +57,7 @@ export default function RegisterPendingPage() {
           <span className="flex h-14 w-14 items-center justify-center rounded-lg border border-status-review-border bg-status-review-soft text-status-review-text shadow-bevel">
             <Icon name="clock" size={26} />
           </span>
-          <h1 className="mt-4 text-2xl font-semibold text-content">
+          <h1 className="mt-4 text-lg font-bold tracking-tight text-content sm:text-xl">
             Учётная запись создана
           </h1>
           <div className="mt-2.5">
