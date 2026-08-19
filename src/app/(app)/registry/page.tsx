@@ -277,7 +277,7 @@ export default function RegistryPage() {
           <TableToolbar
             left={
               <>
-                <div className="min-w-[14rem]">
+                <div className="w-full sm:w-auto sm:min-w-[14rem]">
                   <Input
                     value={query}
                     onChange={(e) => {
@@ -298,7 +298,7 @@ export default function RegistryPage() {
                     setPage(0)
                   }}
                 >
-                  <SelectTrigger size="sm" className="w-auto min-w-[10rem]" aria-label="Статус">
+                  <SelectTrigger size="sm" className="w-full sm:w-auto sm:min-w-[10rem]" aria-label="Статус">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -318,7 +318,7 @@ export default function RegistryPage() {
                     setPage(0)
                   }}
                 >
-                  <SelectTrigger size="sm" className="w-auto min-w-[8.5rem]" aria-label="Операция">
+                  <SelectTrigger size="sm" className="w-full sm:w-auto sm:min-w-[8.5rem]" aria-label="Операция">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -335,7 +335,7 @@ export default function RegistryPage() {
                     setPage(0)
                   }}
                 >
-                  <SelectTrigger size="sm" className="w-auto min-w-[10rem]" aria-label="Объект">
+                  <SelectTrigger size="sm" className="w-full sm:w-auto sm:min-w-[10rem]" aria-label="Объект">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -359,7 +359,7 @@ export default function RegistryPage() {
 
           {/* Период по дате действия пропуска */}
           <div className="flex flex-wrap items-end gap-2 border-b border-hairline bg-surface-sunken px-3 py-2.5">
-            <Field label="Дата действия с" className="w-40" htmlFor="reg-date-from">
+            <Field label="Дата действия с" className="w-[calc(50%-0.25rem)] sm:w-40" htmlFor="reg-date-from">
               <Input
                 id="reg-date-from"
                 size="sm"
@@ -372,7 +372,7 @@ export default function RegistryPage() {
                 }}
               />
             </Field>
-            <Field label="по" className="w-40" htmlFor="reg-date-to">
+            <Field label="по" className="w-[calc(50%-0.25rem)] sm:w-40" htmlFor="reg-date-to">
               <Input
                 id="reg-date-to"
                 size="sm"
@@ -424,35 +424,39 @@ export default function RegistryPage() {
               <TableRow>
                 <TableHead className="w-rail p-0" aria-label="Статус" />
                 <TableHead>Рег. номер</TableHead>
-                <TableHead>Заявка</TableHead>
+                <TableHead className="hidden xl:table-cell">Заявка</TableHead>
                 <SortableHead
                   label="Регистрация"
+                  className="hidden lg:table-cell"
                   active={sortKey === 'registeredAt'}
                   asc={sortAsc}
                   onClick={() => toggleSort('registeredAt')}
                 />
                 <SortableHead
                   label="Дата действия"
+                  className="hidden sm:table-cell"
                   active={sortKey === 'validDate'}
                   asc={sortAsc}
                   onClick={() => toggleSort('validDate')}
                 />
                 <SortableHead
                   label="Заявитель"
+                  className="hidden md:table-cell"
                   active={sortKey === 'applicant'}
                   asc={sortAsc}
                   onClick={() => toggleSort('applicant')}
                 />
-                <TableHead>Операция</TableHead>
+                <TableHead className="hidden md:table-cell">Операция</TableHead>
                 <SortableHead
                   label="Объект"
+                  className="hidden lg:table-cell"
                   active={sortKey === 'object'}
                   asc={sortAsc}
                   onClick={() => toggleSort('object')}
                 />
-                <TableHead>Основание</TableHead>
-                <TableHead className="text-right">Позиций</TableHead>
-                <TableHead>Подтверждение</TableHead>
+                <TableHead className="hidden xl:table-cell">Основание</TableHead>
+                <TableHead className="hidden text-right xl:table-cell">Позиций</TableHead>
+                <TableHead className="hidden xl:table-cell">Подтверждение</TableHead>
                 <TableHead>Статус</TableHead>
                 <TableHead className="w-9" aria-label="Действия" />
               </TableRow>
@@ -476,17 +480,24 @@ export default function RegistryPage() {
                     </td>
                     <TableCell className="whitespace-nowrap font-mono text-sm font-medium text-content">
                       {app.registrationNumber ?? '—'}
+                      {/* На узком экране колонки скрыты — сворачиваем главное сюда */}
+                      <span className="mt-0.5 block font-sans text-2xs font-normal text-content-faint sm:hidden">
+                        {formatDate(app.validDate)} · {OPERATIONS[app.operation].label}
+                      </span>
+                      <span className="block max-w-[11rem] truncate font-sans text-2xs font-normal text-content-faint md:hidden">
+                        {app.applicantName}
+                      </span>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap font-mono text-sm">
+                    <TableCell className="hidden whitespace-nowrap font-mono text-sm xl:table-cell">
                       {app.applicationNumber}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap text-sm tabular-nums">
+                    <TableCell className="hidden whitespace-nowrap text-sm tabular-nums lg:table-cell">
                       {app.registeredAt ? formatDateTime(app.registeredAt) : '—'}
                     </TableCell>
-                    <TableCell className="whitespace-nowrap tabular-nums text-content">
+                    <TableCell className="hidden whitespace-nowrap tabular-nums text-content sm:table-cell">
                       {formatDate(app.validDate)}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <span className="block max-w-[12rem] truncate text-content">
                         {app.applicantName}
                       </span>
@@ -494,24 +505,24 @@ export default function RegistryPage() {
                         {app.organization}
                       </span>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <Badge tone="outline" size="sm" icon={OPERATIONS[app.operation].icon}>
                         {OPERATIONS[app.operation].label}
                       </Badge>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <span className="block max-w-[11rem] truncate">{objectName(app.objectId)}</span>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden xl:table-cell">
                       {/* Основание бывает длинным — в строке обрезаем, полностью видно в подсказке */}
                       <span className="block max-w-[16rem] truncate" title={app.basis}>
                         {app.basis}
                       </span>
                     </TableCell>
-                    <TableCell className="text-right tabular-nums text-content">
+                    <TableCell className="hidden text-right tabular-nums text-content xl:table-cell">
                       {app.items.length}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden xl:table-cell">
                       <Badge
                         tone={app.isNonResident ? 'signal' : 'navy'}
                         size="sm"
@@ -651,14 +662,16 @@ function SortableHead({
   active,
   asc,
   onClick,
+  className,
 }: {
   label: string
   active: boolean
   asc: boolean
   onClick: () => void
+  className?: string
 }) {
   return (
-    <TableHead>
+    <TableHead className={className}>
       <button
         type="button"
         onClick={onClick}

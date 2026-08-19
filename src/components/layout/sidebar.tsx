@@ -168,7 +168,7 @@ export function MobileNav() {
   return (
     <nav
       aria-label="Разделы"
-      className="on-nav sticky bottom-0 z-sticky flex shrink-0 items-stretch gap-px overflow-x-auto border-t border-nav-line bg-nav lg:hidden"
+      className="on-nav sticky bottom-0 z-sticky flex shrink-0 items-stretch gap-px overflow-x-auto border-t border-nav-line bg-nav pb-safe-b lg:hidden"
     >
       {items.map((item) => {
         const active = pathname === item.path || pathname.startsWith(`${item.path}/`)
@@ -178,7 +178,7 @@ export function MobileNav() {
             href={item.path}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'focus-ring-nav relative flex min-w-[5.5rem] flex-1 flex-col items-center justify-center gap-1 px-2 py-2 text-2xs transition-colors duration-fast',
+              'focus-ring-nav relative flex min-w-[4.5rem] flex-1 flex-col items-center justify-center gap-1 px-1.5 py-2 text-2xs transition-colors duration-fast',
               active ? 'text-accent-strong' : 'text-nav-subtle hover:text-nav-fg',
             )}
           >

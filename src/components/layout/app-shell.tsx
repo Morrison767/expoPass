@@ -46,7 +46,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   if (!hydrated || !currentUserId) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-canvas">
+      <div className="flex min-h-dvh items-center justify-center bg-canvas">
         <span className="flex items-center gap-2 text-base text-content-faint">
           <Icon name="loader" size={16} className="animate-spin" />
           Загрузка сервиса…
@@ -56,11 +56,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-canvas">
+    /* h-dvh вместо h-screen: на мобильных 100vh включает адресную строку,
+       из-за чего нижняя навигация уезжает за край экрана */
+    <div className="flex h-dvh flex-col overflow-hidden bg-canvas">
       <Header />
       <div className="flex min-h-0 flex-1">
         <Sidebar />
-        <main className="min-w-0 flex-1 overflow-y-auto">{children}</main>
+        <main className="min-w-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
       </div>
       <MobileNav />
       <Toaster />

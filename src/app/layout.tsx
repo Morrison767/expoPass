@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Open_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
@@ -31,6 +31,26 @@ export const metadata: Metadata = {
 }
 
 /**
+ * Настройки области просмотра.
+ *
+ * `maximumScale` намеренно не ограничен: запрет масштабирования мешает
+ * людям со слабым зрением и нарушает доступность. Вместо этого поля
+ * выставлены так, чтобы не приходилось увеличивать вручную.
+ *
+ * `viewportFit: 'cover'` разрешает контенту заходить под вырез экрана,
+ * а безопасные отступы добавляются в каркасе через env(safe-area-inset-*).
+ */
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#2474F5' },
+    { media: '(prefers-color-scheme: dark)', color: '#0C121C' },
+  ],
+}
+
+/**
  * Тема ставится до первой отрисовки: иначе на секунду мигнёт светлая.
  * Читаем из того же ключа, куда пишет persist-хранилище Zustand.
  */
@@ -51,8 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru" data-theme="light" className={`${sans.variable} ${mono.variable}`}>
       <head>
-        <meta name="theme-color" content="#2474F5" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#0C121C" media="(prefers-color-scheme: dark)" />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>
       <body>{children}</body>

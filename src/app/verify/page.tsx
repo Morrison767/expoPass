@@ -129,7 +129,7 @@ function VerifyContent() {
             setChecked(verify(number))
           }}
         >
-          <div className="min-w-[13rem] flex-1">
+          <div className="w-full flex-1 sm:min-w-[13rem]">
             <Field label="Регистрационный номер" htmlFor="reg-number">
               <Input
                 id="reg-number"

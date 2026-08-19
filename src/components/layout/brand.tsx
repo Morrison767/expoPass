@@ -40,17 +40,20 @@ export function BrandLock({
   size = 32,
   onDark = false,
   subtitle = 'Электронные пропуска',
+  /** На узком экране оставляет только знак: подпись съедает ширину шапки */
+  compact = false,
   className,
 }: {
   size?: number
   onDark?: boolean
   subtitle?: string
+  compact?: boolean
   className?: string
 }) {
   return (
     <span className={cn('flex min-w-0 items-center gap-2.5', className)}>
       <BrandMark size={size} />
-      <span className="min-w-0">
+      <span className={cn('min-w-0', compact && 'hidden sm:block')}>
         <span
           className={cn(
             'block truncate text-md font-semibold leading-tight',

@@ -200,7 +200,7 @@ function ApplicationsContent() {
           <TableToolbar
             left={
               <>
-                <div className="min-w-[13rem]">
+                <div className="w-full sm:w-auto sm:min-w-[13rem]">
                   <Input
                     size="sm"
                     value={query}
@@ -213,7 +213,7 @@ function ApplicationsContent() {
 
                 <MultiSelect
                   label="Фильтр по статусу"
-                  className="min-w-[11rem]"
+                  className="w-full sm:w-auto sm:min-w-[11rem]"
                   size="sm"
                   placeholder="Все статусы"
                   value={statuses}
@@ -228,7 +228,7 @@ function ApplicationsContent() {
                 <Select value={objectId} onValueChange={setObjectId}>
                   <SelectTrigger
                     size="sm"
-                    className="w-auto min-w-[10rem]"
+                    className="w-full sm:w-auto sm:min-w-[10rem]"
                     aria-label="Фильтр по объекту"
                   >
                     <SelectValue />
@@ -246,7 +246,7 @@ function ApplicationsContent() {
                 <Select value={operation} onValueChange={setOperation}>
                   <SelectTrigger
                     size="sm"
-                    className="w-auto min-w-[8.5rem]"
+                    className="w-full sm:w-auto sm:min-w-[8.5rem]"
                     aria-label="Фильтр по операции"
                   >
                     <SelectValue />
@@ -270,7 +270,7 @@ function ApplicationsContent() {
 
           {/* Диапазон дат создания */}
           <div className="flex flex-wrap items-end gap-2 border-b border-hairline bg-surface-sunken px-3 py-2.5">
-            <Field label="Создана с" className="w-40" htmlFor="date-from">
+            <Field label="Создана с" className="w-[calc(50%-0.25rem)] sm:w-40" htmlFor="date-from">
               <Input
                 id="date-from"
                 size="sm"
@@ -280,7 +280,7 @@ function ApplicationsContent() {
                 onChange={(e) => setDateFrom(e.target.value)}
               />
             </Field>
-            <Field label="по" className="w-40" htmlFor="date-to">
+            <Field label="по" className="w-[calc(50%-0.25rem)] sm:w-40" htmlFor="date-to">
               <Input
                 id="date-to"
                 size="sm"
@@ -311,11 +311,12 @@ function ApplicationsContent() {
                   asc={sortAsc}
                   onClick={() => toggleSort('number')}
                 />
-                <TableHead>Тип</TableHead>
-                <TableHead>Объект</TableHead>
-                <TableHead>Операция</TableHead>
+                <TableHead className="hidden xl:table-cell">Тип</TableHead>
+                <TableHead className="hidden md:table-cell">Объект</TableHead>
+                <TableHead className="hidden lg:table-cell">Операция</TableHead>
                 <SortableHead
                   label="Дата действия"
+                  className="hidden sm:table-cell"
                   active={sortKey === 'validDate'}
                   asc={sortAsc}
                   onClick={() => toggleSort('validDate')}
@@ -328,6 +329,7 @@ function ApplicationsContent() {
                 />
                 <SortableHead
                   label="Создана"
+                  className="hidden lg:table-cell"
                   active={sortKey === 'createdAt'}
                   asc={sortAsc}
                   onClick={() => toggleSort('createdAt')}
@@ -373,25 +375,34 @@ function ApplicationsContent() {
                           {app.applicationNumber}
                         </span>
                       ) : null}
+                      {/* На узком экране колонки скрыты — сворачиваем главное сюда */}
+                      <span className="mt-0.5 block text-2xs text-content-faint sm:hidden">
+                        {formatDate(app.validDate)} · {OPERATIONS[app.operation].label}
+                      </span>
+                      <span className="block max-w-[11rem] truncate text-2xs text-content-faint md:hidden">
+                        {objectName(app.objectId)}
+                      </span>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap">Материальный пропуск</TableCell>
-                    <TableCell>
+                    <TableCell className="hidden whitespace-nowrap xl:table-cell">
+                      Материальный пропуск
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <span className="block max-w-[12rem] truncate">
                         {objectName(app.objectId)}
                       </span>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <Badge tone="outline" size="sm" icon={OPERATIONS[app.operation].icon}>
                         {OPERATIONS[app.operation].label}
                       </Badge>
                     </TableCell>
-                    <TableCell className="whitespace-nowrap tabular-nums text-content">
+                    <TableCell className="hidden whitespace-nowrap tabular-nums text-content sm:table-cell">
                       {formatDate(app.validDate)}
                     </TableCell>
                     <TableCell>
                       <StatusBadge status={app.status} size="sm" short />
                     </TableCell>
-                    <TableCell className="whitespace-nowrap text-sm tabular-nums">
+                    <TableCell className="hidden whitespace-nowrap text-sm tabular-nums lg:table-cell">
                       {formatDateTime(app.createdAt)}
                     </TableCell>
                     <TableCell className="w-9 px-2">
@@ -413,14 +424,16 @@ function SortableHead({
   active,
   asc,
   onClick,
+  className,
 }: {
   label: string
   active: boolean
   asc: boolean
   onClick: () => void
+  className?: string
 }) {
   return (
-    <TableHead>
+    <TableHead className={className}>
       <button
         type="button"
         onClick={onClick}

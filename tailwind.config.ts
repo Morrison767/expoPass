@@ -148,7 +148,13 @@ const config: Config = {
       fontFamily,
       fontSize: fontSize as Config['theme'],
       fontWeight,
-      spacing: { ...spacing, ...sizes },
+      spacing: {
+        ...spacing,
+        ...sizes,
+        // Безопасные зоны устройств с вырезом и жестовой полосой
+        'safe-b': 'env(safe-area-inset-bottom)',
+        'safe-t': 'env(safe-area-inset-top)',
+      },
       width: sizes,
       height: sizes,
       minWidth: ({ theme }: { theme: (k: string) => object }) => ({ ...theme('spacing'), ...sizes }),

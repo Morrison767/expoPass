@@ -272,7 +272,7 @@ function WizardContent() {
       </PageBody>
 
       {/* Нижняя панель навигации по шагам */}
-      <div className="sticky bottom-0 z-sticky border-t border-hairline bg-surface px-4 py-2.5 shadow-lg sm:px-5">
+      <div className="sticky bottom-0 z-sticky border-t border-hairline bg-surface px-4 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5 shadow-lg sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Button
             variant="secondary"

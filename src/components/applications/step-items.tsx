@@ -237,7 +237,7 @@ function PhotoUploader({
           icon="eye"
           title={busy ? 'Обработка…' : 'Фотографии ТМЦ'}
           hint="Перетащите сюда или выберите: JPG, PNG"
-          className="min-w-[16rem] flex-1"
+          className="w-full flex-1 sm:min-w-[16rem]"
         />
 
         {/* Миниатюры */}

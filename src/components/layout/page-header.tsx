@@ -26,7 +26,7 @@ export function PageHeader({
 }) {
   return (
     <div className={cn('border-b border-hairline bg-surface', className)}>
-      <div className="flex flex-wrap items-start justify-between gap-3 px-4 pb-3.5 pt-4 sm:px-5">
+      <div className="flex flex-wrap items-start justify-between gap-3 px-4 pb-3.5 pt-4 sm:px-6">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             {icon ? (
@@ -34,7 +34,7 @@ export function PageHeader({
                 <Icon name={icon} size={15} />
               </span>
             ) : null}
-            <h1 className="min-w-0 truncate text-2xl font-semibold leading-tight text-content">
+            <h1 className="min-w-0 truncate text-xl font-semibold leading-tight text-content sm:text-2xl">
               {title}
             </h1>
             {plate ? <Plate className="mt-0.5">{plate}</Plate> : null}
@@ -43,9 +43,11 @@ export function PageHeader({
             <div className="mt-1 max-w-3xl text-base text-content-subtle">{subtitle}</div>
           ) : null}
         </div>
-        {actions ? <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div> : null}
+        {actions ? (
+          <div className="flex w-full shrink-0 flex-wrap items-center gap-2 sm:w-auto">{actions}</div>
+        ) : null}
       </div>
-      {tabs ? <div className="px-4 sm:px-5">{tabs}</div> : null}
+      {tabs ? <div className="px-4 sm:px-6">{tabs}</div> : null}
     </div>
   )
 }
@@ -58,7 +60,7 @@ export function PageBody({
   className?: string
   children: ReactNode
 }) {
-  return <div className={cn('px-4 py-4 sm:px-5 sm:py-5', className)}>{children}</div>
+  return <div className={cn('px-4 py-4 sm:px-6 sm:py-6', className)}>{children}</div>
 }
 
 /**

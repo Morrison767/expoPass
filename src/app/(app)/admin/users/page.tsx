@@ -131,7 +131,7 @@ export default function AdminUsersPage() {
           <TableToolbar
             left={
               <>
-                <div className="min-w-[14rem]">
+                <div className="w-full sm:w-auto sm:min-w-[14rem]">
                   <Input
                     size="sm"
                     value={query}
@@ -145,7 +145,7 @@ export default function AdminUsersPage() {
                   value={statusFilter}
                   onValueChange={(v) => setStatusFilter(v as typeof statusFilter)}
                 >
-                  <SelectTrigger size="sm" className="w-auto min-w-[11rem]" aria-label="Статус">
+                  <SelectTrigger size="sm" className="w-full sm:w-auto sm:min-w-[11rem]" aria-label="Статус">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

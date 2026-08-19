@@ -44,15 +44,20 @@ export function Header() {
           onClick={toggleSidebar}
           className="lg:hidden"
         />
-        <Link href="/dashboard" className="focus-ring-nav rounded">
-          <BrandLock size={30} onDark />
+        <Link href="/dashboard" className="focus-ring-nav min-w-0 rounded">
+          <BrandLock size={30} onDark compact />
         </Link>
       </div>
 
       <div className="relative flex items-center gap-2">
         {user ? <NotificationsBell userId={user.id} /> : null}
-        <LanguageSwitcher />
-        <ThemeToggle />
+
+        {/* Язык и тема — второстепенные переключатели: на узком экране
+            уступают место уведомлениям, роли и выходу */}
+        <span className="hidden sm:contents">
+          <LanguageSwitcher />
+          <ThemeToggle />
+        </span>
 
         <span className="hidden h-5 w-px shrink-0 bg-nav-line sm:block" aria-hidden="true" />
 

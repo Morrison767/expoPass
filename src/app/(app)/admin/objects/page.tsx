@@ -108,7 +108,7 @@ export default function AdminObjectsPage() {
         <TableWrap>
           <TableToolbar
             left={
-              <div className="min-w-[16rem]">
+              <div className="w-full sm:w-auto sm:min-w-[16rem]">
                 <Input
                   size="sm"
                   value={query}

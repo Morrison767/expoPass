@@ -39,7 +39,10 @@ const DialogContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          'fixed left-1/2 top-1/2 z-modal grid max-h-[calc(100vh-3rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 grid-rows-[auto_1fr_auto] gap-0',
+          'fixed left-1/2 top-1/2 z-modal grid -translate-x-1/2 -translate-y-1/2 grid-rows-[auto_1fr_auto] gap-0',
+          // На телефоне окно занимает почти весь экран: поля 2rem съедали
+          // половину ширины, а 3rem по высоте не хватало для длинных форм
+          'max-h-[calc(100dvh-1.5rem)] w-[calc(100vw-1rem)] sm:max-h-[calc(100dvh-3rem)] sm:w-[calc(100vw-2rem)]',
           'animate-scale-in overflow-hidden rounded-lg border border-hairline bg-surface shadow-xl',
           sizes[size],
           className,

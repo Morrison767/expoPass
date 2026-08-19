@@ -38,7 +38,7 @@ export function PassDocument({
   return (
     <article
       data-print-root
-      className="relative mx-auto max-w-[46rem] overflow-hidden bg-white p-8 text-ink-900 shadow-md print:shadow-none"
+      className="relative mx-auto max-w-[46rem] overflow-hidden bg-white p-4 text-ink-900 shadow-md sm:p-8 print:p-8 print:shadow-none"
       style={{ colorScheme: 'light' }}
     >
       {/* Штамп поверх бланка: документ утратил силу */}
@@ -92,7 +92,7 @@ export function PassDocument({
       </div>
 
       {/* Операция и дата — ключевые реквизиты на контрольно-пропускном пункте */}
-      <div className="mt-5 flex items-stretch gap-4">
+      <div className="mt-5 flex flex-col items-stretch gap-3 sm:flex-row sm:gap-4 print:flex-row">
         <div className="flex-1 rounded border-2 border-brand-600 px-4 py-3 text-center">
           <p className="text-2xs font-semibold uppercase tracking-label text-ink-500">Операция</p>
           <p className="mt-0.5 text-xl font-bold uppercase tracking-plate text-brand-600">
@@ -110,7 +110,7 @@ export function PassDocument({
       </div>
 
       {/* Реквизиты */}
-      <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-ink-200 pt-4 text-sm">
+      <dl className="mt-5 grid grid-cols-1 gap-x-6 gap-y-3 border-t border-ink-200 pt-4 text-sm sm:grid-cols-2 print:grid-cols-2">
         <DocRow label="Заявитель" value={application.applicantName} />
         <DocRow label="Организация" value={application.organization} />
         <DocRow label="Объект / блок" value={objectName} />
@@ -120,7 +120,7 @@ export function PassDocument({
           label="Позиций ТМЦ"
           value={pluralWithCount(totalPositions, ['позиция', 'позиции', 'позиций'])}
         />
-        <div className="col-span-2">
+        <div className="sm:col-span-2 print:col-span-2">
           <dt className="text-2xs font-semibold uppercase tracking-label text-ink-500">Основание</dt>
           <dd className="mt-0.5 whitespace-pre-line leading-relaxed text-ink-900">
             {application.basis}
@@ -179,7 +179,7 @@ export function PassDocument({
       </section>
 
       {/* Отметки: подтверждение заявителя, согласование, регистрация */}
-      <section className="mt-5 grid grid-cols-3 gap-3 border-t border-ink-200 pt-4">
+      <section className="mt-5 grid grid-cols-1 gap-3 border-t border-ink-200 pt-4 sm:grid-cols-3 print:grid-cols-3">
         <Endorsement
           title="Подтверждение заявителя"
           name={application.applicantName}
@@ -222,7 +222,7 @@ export function PassDocument({
       ) : null}
 
       {/* QR-код проверки */}
-      <footer className="mt-6 flex items-end justify-between gap-4 border-t border-ink-200 pt-4">
+      <footer className="mt-6 flex flex-col items-start justify-between gap-4 border-t border-ink-200 pt-4 sm:flex-row sm:items-end print:flex-row print:items-end">
         <div>
           <p className="text-2xs font-semibold uppercase tracking-label text-ink-500">
             Проверка подлинности
