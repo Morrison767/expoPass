@@ -40,11 +40,41 @@ import type { Application } from '@/lib/types'
  */
 
 const STEPS = [
-  { key: 'data', label: 'Данные', icon: 'file-text' },
-  { key: 'items', label: 'ТМЦ', icon: 'package' },
-  { key: 'identity', label: 'Подтверждение личности', icon: 'pen' },
-  { key: 'review', label: 'Проверка', icon: 'eye' },
-  { key: 'submit', label: 'Отправка', icon: 'check' },
+  {
+    key: 'data',
+    short: 'Данные',
+    label: 'Данные заявки',
+    guide: 'Операция, объект, срок действия и цель вноса либо выноса',
+    icon: 'file-text',
+  },
+  {
+    key: 'items',
+    short: 'ТМЦ',
+    label: 'Товарно-материальные ценности',
+    guide: 'Перечень позиций: наименование, количество, серийный номер, фотографии',
+    icon: 'package',
+  },
+  {
+    key: 'identity',
+    short: 'Личность',
+    label: 'Подтверждение личности',
+    guide: 'Резидент подписывает ЭЦП, нерезидент прикладывает документ',
+    icon: 'pen',
+  },
+  {
+    key: 'review',
+    short: 'Проверка',
+    label: 'Проверка перед отправкой',
+    guide: 'Сверьте сведения — после отправки правки возможны только через возврат',
+    icon: 'eye',
+  },
+  {
+    key: 'submit',
+    short: 'Отправка',
+    label: 'Отправка',
+    guide: '',
+    icon: 'check',
+  },
 ] as const
 
 type StepKey = (typeof STEPS)[number]['key']
@@ -247,6 +277,8 @@ function WizardContent() {
           </div>
         ) : null}
 
+        <StepIntro index={stepIndex} total={STEPS.length - 1} />
+
         {/* Экраны шагов с направленной анимацией */}
         <div className="relative overflow-x-clip">
           <AnimatePresence mode="wait" initial={false} custom={direction}>
@@ -285,8 +317,9 @@ function WizardContent() {
           </Button>
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="hidden text-xs text-content-faint sm:inline">
+            <span className="text-xs text-content-faint">
               Шаг {stepIndex + 1} из {STEPS.length - 1}
+              <span className="hidden sm:inline"> · {STEPS[stepIndex].short}</span>
             </span>
 
             {step === 'review' ? (
@@ -312,8 +345,14 @@ function WizardContent() {
   )
 }
 
-/* ─────────────── Прогресс-бар ─────────────── */
+/* ─────────────── Указатель шагов ─────────────── */
 
+/**
+ * Сегментированная полоса: каждый шаг — отдельная ячейка во всю ширину.
+ * Текущий шаг залит акцентом, пройденные помечены галочкой и кликабельны,
+ * предстоящие приглушены. Мелкие кружки прежнего варианта на телефоне
+ * читались как точки без подписей, поэтому подпись видна на всех ширинах.
+ */
 function ProgressBar({
   current,
   onNavigate,
@@ -324,64 +363,71 @@ function ProgressBar({
   const visible = STEPS.slice(0, 4)
 
   return (
-    <nav aria-label="Шаги оформления" className="relative pb-1">
-      <ol className="flex items-center gap-1 overflow-x-auto">
+    <nav aria-label="Шаги оформления" className="pb-3.5">
+      <ol className="flex overflow-hidden rounded-md border border-hairline bg-surface-sunken">
         {visible.map((s, index) => {
           const active = index === current
           const done = index < current
 
           return (
-            <li key={s.key} className="flex min-w-0 flex-1 items-center gap-2">
+            <li
+              key={s.key}
+              className="flex min-w-0 flex-1 border-l border-hairline first:border-l-0"
+            >
               <button
                 type="button"
                 onClick={() => (done ? onNavigate(s.key) : undefined)}
                 disabled={!done && !active}
                 aria-current={active ? 'step' : undefined}
+                title={s.label}
                 className={cn(
-                  'focus-ring flex min-w-0 items-center gap-2 rounded px-1 py-1.5 text-left transition-colors duration-fast',
-                  done && 'cursor-pointer hover:bg-surface-sunken',
-                  !done && !active && 'cursor-default',
+                  'focus-ring flex w-full min-w-0 items-center justify-center gap-1.5 px-1.5 py-2.5 transition-colors duration-fast sm:gap-2 sm:px-3',
+                  active
+                    ? 'bg-accent text-content-inverse'
+                    : done
+                      ? 'cursor-pointer text-accent-fg hover:bg-accent-soft'
+                      : 'cursor-default text-content-faint',
                 )}
               >
                 <span
                   className={cn(
-                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-2xs font-semibold tabular-nums transition-colors duration-base',
+                    'flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-2xs font-bold tabular-nums transition-colors duration-base',
                     active
-                      ? 'border-accent bg-accent text-content-inverse'
+                      ? 'bg-surface text-accent-fg'
                       : done
-                        ? 'border-status-confirmed-border bg-status-confirmed-soft text-status-confirmed-text'
-                        : 'border-hairline-strong bg-surface text-content-faint',
+                        ? 'bg-status-confirmed-soft text-status-confirmed-text'
+                        : 'border border-hairline-strong bg-surface',
                   )}
                 >
-                  {done ? <Icon name="check" size={11} strokeWidth={2.6} /> : index + 1}
+                  {done ? <Icon name="check" size={11} strokeWidth={2.8} /> : index + 1}
                 </span>
-                <span
-                  className={cn(
-                    'hidden min-w-0 truncate text-xs md:block',
-                    active ? 'font-semibold text-content' : done ? 'text-content-muted' : 'text-content-faint',
-                  )}
-                >
-                  {s.label}
+                <span className="min-w-0 truncate text-2xs font-semibold sm:text-xs">
+                  {s.short}
                 </span>
               </button>
-
-              {index < visible.length - 1 ? (
-                <span
-                  aria-hidden="true"
-                  className="relative h-px min-w-3 flex-1 overflow-hidden bg-hairline"
-                >
-                  <motion.span
-                    className="absolute inset-y-0 left-0 bg-accent"
-                    initial={false}
-                    animate={{ width: done ? '100%' : '0%' }}
-                    transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                </span>
-              ) : null}
             </li>
           )
         })}
       </ol>
     </nav>
+  )
+}
+
+/* ─────────────── Заголовок текущего шага ─────────────── */
+
+/** Называет шаг прямо над содержимым: номер, название и что здесь делают. */
+function StepIntro({ index, total }: { index: number; total: number }) {
+  const step = STEPS[index]
+
+  return (
+    <div className="mb-4 border-l-2 border-accent pl-3">
+      <p className="text-2xs font-semibold uppercase tracking-label text-accent-fg">
+        Шаг {index + 1} из {total}
+      </p>
+      <h2 className="mt-0.5 text-lg font-bold tracking-tight text-content">{step.label}</h2>
+      {step.guide ? (
+        <p className="mt-0.5 text-base leading-relaxed text-content-subtle">{step.guide}</p>
+      ) : null}
+    </div>
   )
 }

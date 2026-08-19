@@ -47,7 +47,7 @@ export function StepItems() {
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-hairline-soft bg-surface-sunken px-4 py-2.5">
         <div className="flex items-center gap-2">
           <h2 className="text-2xs font-semibold uppercase tracking-label text-content-subtle">
-            Товарно-материальные ценности
+            Перечень позиций
           </h2>
           <span className="inline-flex items-center gap-1 rounded border border-accent-line bg-accent-soft px-2 py-0.5 text-2xs font-semibold text-accent-strong">
             <Icon name="package" size={11} />

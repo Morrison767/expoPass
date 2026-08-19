@@ -215,47 +215,58 @@ export default function RegisterPage() {
       </header>
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
-        {/* Индикатор шагов */}
-        <ol className="mb-6 flex items-center gap-2" aria-label="Шаги регистрации">
-          {[
-            { key: 'form', label: 'Данные учётной записи' },
-            { key: 'code', label: 'Подтверждение e-mail' },
-            { key: 'wait', label: 'Подтверждение администратором' },
-          ].map((s, index) => {
-            const order = ['form', 'code', 'wait']
-            const currentIndex = order.indexOf(step)
-            const done = index < currentIndex
-            const active = s.key === step
+        {/* Индикатор шагов — тот же вид, что в мастере оформления пропуска */}
+        <nav aria-label="Шаги регистрации" className="mb-6">
+          <ol className="flex overflow-hidden rounded-md border border-hairline bg-surface-sunken">
+            {[
+              { key: 'form', short: 'Данные', label: 'Данные учётной записи' },
+              { key: 'code', short: 'E-mail', label: 'Подтверждение e-mail' },
+              { key: 'wait', short: 'Проверка', label: 'Подтверждение администратором' },
+            ].map((s, index) => {
+              const order = ['form', 'code', 'wait']
+              const currentIndex = order.indexOf(step)
+              const done = index < currentIndex
+              const active = s.key === step
 
-            return (
-              <li key={s.key} className="flex min-w-0 flex-1 items-center gap-2">
-                <span
-                  className={cn(
-                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-2xs font-semibold tabular-nums',
-                    active
-                      ? 'border-accent bg-accent text-content-inverse'
-                      : done
-                        ? 'border-status-confirmed-border bg-status-confirmed-soft text-status-confirmed-text'
-                        : 'border-hairline-strong bg-surface text-content-faint',
-                  )}
+              return (
+                <li
+                  key={s.key}
+                  className="flex min-w-0 flex-1 border-l border-hairline first:border-l-0"
                 >
-                  {done ? <Icon name="check" size={11} strokeWidth={2.4} /> : index + 1}
-                </span>
-                <span
-                  className={cn(
-                    'hidden min-w-0 truncate text-xs sm:block',
-                    active ? 'font-medium text-content' : 'text-content-faint',
-                  )}
-                >
-                  {s.label}
-                </span>
-                {index < 2 ? (
-                  <span aria-hidden="true" className="h-px min-w-4 flex-1 bg-hairline" />
-                ) : null}
-              </li>
-            )
-          })}
-        </ol>
+                  <span
+                    aria-current={active ? 'step' : undefined}
+                    title={s.label}
+                    className={cn(
+                      'flex w-full min-w-0 items-center justify-center gap-1.5 px-1.5 py-2.5 sm:gap-2 sm:px-3',
+                      active
+                        ? 'bg-accent text-content-inverse'
+                        : done
+                          ? 'text-accent-fg'
+                          : 'text-content-faint',
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        'flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-2xs font-bold tabular-nums',
+                        active
+                          ? 'bg-surface text-accent-fg'
+                          : done
+                            ? 'bg-status-confirmed-soft text-status-confirmed-text'
+                            : 'border border-hairline-strong bg-surface',
+                      )}
+                    >
+                      {done ? <Icon name="check" size={11} strokeWidth={2.8} /> : index + 1}
+                    </span>
+                    <span className="min-w-0 truncate text-2xs font-semibold sm:text-xs">
+                      <span className="sm:hidden">{s.short}</span>
+                      <span className="hidden sm:inline">{s.label}</span>
+                    </span>
+                  </span>
+                </li>
+              )
+            })}
+          </ol>
+        </nav>
 
         {/* ─────────── Шаг 1: форма ─────────── */}
         {step === 'form' ? (
